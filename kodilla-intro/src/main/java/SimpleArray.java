@@ -1,18 +1,12 @@
 public class SimpleArray {
     public static void main(String[] args) {
-        String[] books = new String[5];
-        books[0] = "Kompania braci";
-        books[1] = "Finansowa Forteca";
-        books[2] = "Certyfikowany tester ISTQB(CTFL)";
-        books[3] = "Historia bez cenzury";
-        books[4] = "Atlas gor Polskich";
+        String[] names = new String[] {"Maciej", "Jarek", "Kamil", "Marcin", "Michał"};
+        String name = names[0];
+        System.out.println(name);
+        //Ćwiczenie 1 i 2 z tematu: Tworzenie tablicy + wyciąganie konkretnej wartości z tablicy i zapis do zmiennej.
 
-        int numberOfElements = books.length;
-        System.out.println("Moja tablica zawiera 5 elementow");
-        //Ćwiczenie 1 - tworzenie tablicy.
-
-        String book = books[2];
-        System.out.println(book);
-        //Ćwiczenie 2 - wyciąganie elementu z tablicy.
+        int arrayLength = names.length;
+        System.out.println(("Moja tablica zawiera " + arrayLength + " elementow."));
     }
 }
+
