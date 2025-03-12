@@ -7,7 +7,7 @@ public class SimpleArray {
 
         int arrayLength = names.length;
         System.out.println(("Moja tablica zawiera " + arrayLength + " elementow."));
-        //Ćwiczenie 3 z teamtu: Tworzenie tablicy.
+        //Ćwiczenie 3 z tematu: Tworzenie tablicy.
     }
 }
 
