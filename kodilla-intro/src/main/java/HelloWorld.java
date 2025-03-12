@@ -5,6 +5,6 @@ public class HelloWorld {                           // [1]
         System.out.println("Mam 37 lat");
         System.out.println("Pierwsza litera mojego nazwiska to L");
         //0.7.Typy danych. Typy danych w Javie. Pierwsze zadanie: HelloWorld!
-        //Pierwsze zadanie wykonane przeze mnie z preworku
+        //To jest pierwsze zadanie wykonane przeze mnie z preworku.
     }
 }
