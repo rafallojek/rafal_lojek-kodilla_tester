@@ -1,3 +1,5 @@
+package com.kodilla;
+
 public class Loops1 {
     public static void main(String[] args) {
         String[] names = new String[] {"Zygfryd", "Gwidon", "Florentyna"};
