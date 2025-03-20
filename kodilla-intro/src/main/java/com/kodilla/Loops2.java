@@ -8,5 +8,3 @@ public class Loops2 {
         }
     }
 }
-//Tutaj też wkradł mi się chochlik, bo za szybko chciałem napisać kod. Również szybko błąd wyłapany.
-//Cwiczenie jak w com.kodilla.Loops1, z tym że wyświetlanie elementów tablicy od końca.

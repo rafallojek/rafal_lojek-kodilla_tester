@@ -8,4 +8,3 @@ public class Loops1 {
         }
     }
 }
-//Wyświetlanie elementów tablicy w Pętli.

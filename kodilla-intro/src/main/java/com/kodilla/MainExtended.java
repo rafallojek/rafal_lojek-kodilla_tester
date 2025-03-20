@@ -15,6 +15,5 @@ public class MainExtended {
         System.out.println(carClass);
         System.out.println(isGoodProgrammer);
         System.out.println(myText);
-
     }
 }
