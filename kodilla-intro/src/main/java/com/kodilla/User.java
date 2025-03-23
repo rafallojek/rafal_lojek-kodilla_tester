@@ -24,14 +24,14 @@ public class User {
                 new User("Joanna", 36),
                 new User("Aleksandra", 44),
                 new User("Maciej", 32),
-                new User("Jaroslaw", 26)
-        };
+                new User("Jaroslaw", 26);
+        }
 
         int sum = 0;
         for (User user : users) {
             sum += user.getAge();
         }
-        double averageAge = (double) sum / users.length;
+        double averageAge = (double)sum/users.length;
 
         System.out.println("Uzytkownicy ponizej sredniej wieku:");
         for (User user : users) {
