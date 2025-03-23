@@ -25,7 +25,6 @@ public class Application {
                 this.age = age;
                 this.height = height;
             }
-
             public void checkUser() {
                 if (age > 30 && height > 160) {
                     System.out.println("User is older than 30 and taller than 160cm");
@@ -34,7 +33,6 @@ public class Application {
                 }
             }
         }
-
         public class Application {
             public static void main(String[] args) {
                 User user = new User("Adam", 40.5, 178);
