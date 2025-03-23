@@ -11,12 +11,12 @@ public class FirstClass {
         notebook1.checkWeight();
         notebook1.checkYearAndPrice();
 
-        System.out.println("\nNotebook 2:");
+        System.out.println("Notebook 2:");
         notebook2.checkPrice();
         notebook2.checkWeight();
         notebook2.checkYearAndPrice();
 
-        System.out.println("\nNotebook 3:");
+        System.out.println("Notebook 3:");
         notebook3.checkPrice();
         notebook3.checkWeight();
         notebook3.checkYearAndPrice();
