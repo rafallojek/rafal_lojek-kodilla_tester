@@ -1,20 +1,20 @@
 package com.kodilla;
 
-public class Notebook {
-    private int price;
-    private double weight;
-    private int year;
+class Notebook {
+    int price;
+    int weight;
+    int year;
 
-    public Notebook(int price, double weight, int year) {
+    public Notebook(int price, int weight, int year) {
         this.price = price;
         this.weight = weight;
         this.year = year;
     }
 
     public void checkPrice() {
-        if (price < 600) {
+        if (this.price < 600) {
             System.out.println("This notebook is very cheap.");
-        } else if (price <= 1000) {
+        } else if (this.price >= 600 && this.price <= 1000) {
             System.out.println("The price is good.");
         } else {
             System.out.println("This notebook is expensive.");
@@ -22,43 +22,22 @@ public class Notebook {
     }
 
     public void checkWeight() {
-        if (weight < 1.5) {
-            System.out.println("This device is lightweight.");
-        } else if (weight <= 2.5) {
-            System.out.println("This device is not too heavy.");
+        if (this.weight < 1000) {
+            System.out.println("This notebook is light.");
+        } else if (this.weight >= 1000 && this.weight <= 2000) {
+            System.out.println("This notebook is not too heavy.");
         } else {
-            System.out.println("This device is very heavy.");
+            System.out.println("This notebook is very heavy.");
         }
     }
 
     public void checkYearAndPrice() {
-        if (year > 2018 && price > 1500) {
+        if (this.year > 2018 && this.price > 1500) {
             System.out.println("This is a modern and expensive notebook.");
-        } else if (year <= 2018 && price > 1500) {
-            System.out.println("This notebook is expensive but quite old.");
-        } else if (year > 2018 && price <= 1500) {
-            System.out.println("This is a modern and affordable notebook.");
+        } else if (this.year < 2010 && this.price < 800) {
+            System.out.println("This notebook is quite old and affordable.");
         } else {
-            System.out.println("This is an older, budget-friendly notebook.");
+            System.out.println("This notebook has a balanced price and age.");
         }
     }
-
-    public static void main(String[] args) {
-        Notebook notebook1 = new Notebook(500, 1.2, 2020);
-        Notebook notebook2 = new Notebook(900, 2.0, 2015);
-        Notebook notebook3 = new Notebook(1600, 3.0, 2019);
-
-        notebook1.checkPrice();
-        notebook1.checkWeight();
-        notebook1.checkYearAndPrice();
-
-        notebook2.checkPrice();
-        notebook2.checkWeight();
-        notebook2.checkYearAndPrice();
-
-        notebook3.checkPrice();
-        notebook3.checkWeight();
-        notebook3.checkYearAndPrice();
-    }
 }
-
