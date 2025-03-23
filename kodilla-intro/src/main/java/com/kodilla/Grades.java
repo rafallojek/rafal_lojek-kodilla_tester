@@ -15,4 +15,22 @@ public class Grades {
         this.grades[this.size] = value;
         this.size++;
     }
-} // Tutaj chwilowo utknąłem...
+
+    public int getLastGrade() {
+        if (this.size == 0) {
+            return -1;
+        }
+        return this.grades[this.size - 1];
+    }
+
+    public double getAverageGrade() {
+        if (this.size == 0) {
+            return 0.0;
+        }
+        int sum = 0;
+        for (int i = 0; i < this.size; i++) {
+            sum += this.grades[i];
+        }
+        return (double) sum / this.size;
+    }
+}
