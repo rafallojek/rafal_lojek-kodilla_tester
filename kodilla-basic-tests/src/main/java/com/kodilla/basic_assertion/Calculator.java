@@ -9,4 +9,9 @@ public class Calculator {
     public int subtract(int a, int b) {
         return a - b;
     }
+
+    public int square(int number) {
+        return (int) Math.pow(number, 2);
+    }
 }
+

@@ -11,7 +11,11 @@ public class OperatingSystem {
         System.out.println("System on");
     }
 
-    public void turnoff() {
+    public void turnOff() {
         System.out.println("System off. You can now safely turn off your computer");
+    }
+
+    public int getYear() {
+        return year;
     }
 }
