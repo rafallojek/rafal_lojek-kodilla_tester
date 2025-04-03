@@ -19,5 +19,13 @@ public class Main {
         } else {
             System.out.println("Squaring is incorrect.");
         }
+
+        int resultIncorrectSquare = calculator.incorrectSquare(4);
+        System.out.println("4^2 (Incorrect method) = " + resultIncorrectSquare);
+        if (resultIncorrectSquare == 16) {
+            System.out.println("Squaring correct. Correct method.");
+        } else {
+            System.out.println("Squaring incorrect. Incorrect method.");
+        }
     }
 }
