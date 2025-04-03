@@ -20,19 +20,19 @@ abstract class Job {
 
 class Developer extends Job {
     public Developer() {
-        super(8000, "Writing and maintaining code, fixing bugs, collaborating with team members.");
+        super(9500, "Writing and debuging code, fixing bugs, collab with team.");
     }
 }
 
 class Teacher extends Job {
     public Teacher() {
-        super(5000, "Teaching students, preparing lesson plans, grading assignments.");
+        super(4200, "Teaching, preparing lesson plans, preparing exams, preparing meeting with parents.");
     }
 }
 
 class Doctor extends Job {
     public Doctor() {
-        super(12000, "Diagnosing and treating patients, prescribing medication, conducting medical procedures.");
+        super(11400, "Diagnosing and treating patients, prescribing medication, conducting medical procedures.");
     }
 }
 
