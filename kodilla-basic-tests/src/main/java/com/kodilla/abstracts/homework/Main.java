@@ -1,4 +1,4 @@
-package com.kodilla.abstracts.homework.homework2;
+package com.kodilla.abstracts.homework;
 
 public class Main {
     public static void main(String[] args) {

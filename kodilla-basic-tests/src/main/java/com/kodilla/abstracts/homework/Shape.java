@@ -1,4 +1,4 @@
-package com.kodilla.abstracts.homework.homework1;
+package com.kodilla.abstracts.homework;
 
 abstract class Shape {
     abstract double calculateArea();
