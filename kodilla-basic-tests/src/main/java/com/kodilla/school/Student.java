@@ -14,24 +14,36 @@ public class Student {
         this.physics = new Grades();
         this.geography = new Grades();
         this.history = new Grades();
-
     }
 
-        public double getMathsAverage() {
-            return this.maths.getAverage();
-        }
+    public double getMathsAverage() {
+        return this.maths.getAverage();
+    }
 
-        public double getPhysicsAverage() {
-            return this.physics.getAverage();
-        }
+    public double getPhysicsAverage() {
+        return this.physics.getAverage();
+    }
 
-        public double getGeographyAverage() {
-            return this.geography.getAverage();
-        }
+    public double getGeographyAverage() {
+        return this.geography.getAverage();
+    }
 
-        public double getHistoryAverage() {
-            return this.history.getAverage();
-        }
+    public double getHistoryAverage() {
+        return this.history.getAverage();
+    }
+
+    public void addGeographyGrade(int i) {
+    }
+
+
+    public void addHistoryGrade(int i) {
+    }
+
+    public void addPhysicsGrade(int i) {
+    }
+
+    public void addMathGrade(int i) {
+    }
 
     public double getAverage() {
         return -1;
