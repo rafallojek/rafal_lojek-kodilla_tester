@@ -26,7 +26,7 @@ public class UserDialogs {
             case 'r': return "Red";
             case 'l': return "Lagoon";
             case 'a': return "Amethystine";
-            case 'gr': return "Gray";
+            case 'g': return "Gray";
             case 'c': return "Claret";
             case 'p': return "Pink";
             default: return null;
