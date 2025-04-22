@@ -9,29 +9,26 @@ public class UserDialogs {
         String color = getColorByFirstLetter(firstLetter);
 
         if (color != null) {
-            System.out.println("User wybral kolor: " + color);
+            System.out.println("User selected color: " + color);
         } else {
-            System.out.println("Blad. Nie ma takiego koloru.");
+            System.out.println("Error. Color is unavailable.");
         }
     }
 
     public static char askForFirstLetter() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Podaj, prosze pierwsza litere koloru: ");
+        System.out.print("Please enter the first letter of the color: ");
         return scanner.next().toLowerCase().charAt(0);
     }
 
     public static String getColorByFirstLetter(char letter) {
         switch (letter) {
-            case 'c': return "Czerwony";
-            case 'l': return "Lagunowy";
-            case 'z': return "Zielony";
-            case 'a': return "Ametystowy";
-            case 'p': return "Popielaty";
-            case 'b': return "Bordowy";
-            case 'r': return "Rozowy";
-            case 't': return "Teczowy";
-            case 'k': return "Kodillowy :) ";
+            case 'r': return "Red";
+            case 'l': return "Lagoon";
+            case 'a': return "Amethystine";
+            case 'g': return "Gray";
+            case 'c': return "Claret";
+            case 'p': return "Pink";
             default: return null;
         }
     }
