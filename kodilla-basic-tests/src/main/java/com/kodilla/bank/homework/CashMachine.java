@@ -14,7 +14,7 @@ public class CashMachine {
             transactions[transactionIndex] = amount;
             transactionIndex++;
         } else {
-            System.out.println("Brak miejsca na nową transakcję.");
+            System.out.println("No space for new transaction.");
         }
     }
 
