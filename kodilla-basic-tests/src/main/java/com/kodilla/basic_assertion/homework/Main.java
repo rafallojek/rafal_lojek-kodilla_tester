@@ -4,28 +4,12 @@ public class Main {
     public static void main(String[] args) {
         Calculator calculator = new Calculator();
 
-        int resultSubtract = calculator.subtract(37, 36);
-        System.out.println("37 - 36 = " + resultSubtract);
-        if (resultSubtract == 1) {
-            System.out.println("Subtraction correct.");
-        } else {
-            System.out.println("Subtraction incorrect.");
-        }
-
-        int resultSquare = calculator.square(5);
-        System.out.println("5^2 = " + resultSquare);
-        if (resultSquare == 25) {
-            System.out.println("Squaring correct.");
-        } else {
-            System.out.println("Squaring is incorrect.");
-        }
-
-        int resultIncorrectSquare = calculator.incorrectSquare(4);
-        System.out.println("4^2 (Incorrect method) = " + resultIncorrectSquare);
-        if (resultIncorrectSquare == 16) {
-            System.out.println("Squaring correct. Correct method.");
-        } else {
-            System.out.println("Squaring incorrect. Incorrect method.");
-        }
+        System.out.println("Addition 8 + 2 = " + calculator.add(8, 2));
+        System.out.println("Subtraction 10 - 3 = " + calculator.subtract(10, 3));
+        System.out.println("Multiplication 7 * 6 = " + calculator.multiply(7, 6));
+        System.out.println("Division 20 / 4 = " + calculator.divide(20, 4));
+        System.out.println("Power of 5 = " + calculator.power(5));
+        System.out.println("Incorrect power of 5 = " + calculator.incorrectPower(5));
     }
 }
+
