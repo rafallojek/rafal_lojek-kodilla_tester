@@ -4,7 +4,7 @@ import com.kodilla.bank.homework.Bank;
 
 import org.junit.jupiter.api.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BankTest {
     private Bank bank;
