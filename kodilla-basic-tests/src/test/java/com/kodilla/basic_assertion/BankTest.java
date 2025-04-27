@@ -1,103 +1,77 @@
-import com.kodilla.bank.homework.Bank;
-import com.kodilla.bank.homework.CashMachine;
-import org.junit.jupiter.api.Test;
+package com.kodilla.basic_assertion;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.kodilla.bank.homework.Bank;
+
+import org.junit.jupiter.api.*;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BankTest {
-    @Test
-    void testEmptyBank() {
-        CashMachine[] cashMachines = new CashMachine[0];
-        Bank bank = new Bank(cashMachines);
-        assertEquals(0, bank.getTotalBalance());
-        assertEquals(0, bank.getWithdrawalsCount());
-        assertEquals(0, bank.getDepositsCount());
-        assertEquals(0, bank.getAverageWithdrawal());
-        assertEquals(0, bank.getAverageDeposit());
+    private Bank bank;
+
+    @BeforeEach
+    public void setUp() {
+        bank = new Bank(2);  // Tworzymy bank z dwoma bankomatami
     }
 
     @Test
-    void testSingleMachineWithDeposit() {
-        CashMachine machine = new CashMachine(10);
-        machine.addTransaction(100);
-        CashMachine[] cashMachines = {machine};
-        Bank bank = new Bank(cashMachines);
-        assertEquals(100, bank.getTotalBalance());
-        assertEquals(0, bank.getWithdrawalsCount());
-        assertEquals(1, bank.getDepositsCount());
-        assertEquals(0, bank.getAverageWithdrawal());
-        assertEquals(100, bank.getAverageDeposit());
+    public void testTotalBalance() {
+        bank.cashMachines[0].addTransaction(100);
+        bank.cashMachines[0].addTransaction(-50);
+        bank.cashMachines[1].addTransaction(200);
+        bank.cashMachines[1].addTransaction(-100);
+
+        assertEquals(150, bank.getTotalBalance(), 0.001);
     }
 
     @Test
-    void testSingleMachineWithWithdrawal() {
-        CashMachine machine = new CashMachine(10);
-        machine.addTransaction(-50);
-        CashMachine[] cashMachines = {machine};
-        Bank bank = new Bank(cashMachines);
-        assertEquals(-50, bank.getTotalBalance());
-        assertEquals(1, bank.getWithdrawalsCount());
-        assertEquals(0, bank.getDepositsCount());
-        assertEquals(50, bank.getAverageWithdrawal());
-        assertEquals(0, bank.getAverageDeposit());
+    public void testTotalWithdrawals() {
+        bank.cashMachines[0].addTransaction(-50);
+        bank.cashMachines[1].addTransaction(-100);
+
+        assertEquals(2, bank.getTotalWithdrawalCount());
     }
 
     @Test
-    void testMultipleMachines() {
-        CashMachine machine1 = new CashMachine(10);
-        machine1.addTransaction(100);
-        machine1.addTransaction(-50);
+    public void testTotalDeposits() {
+        bank.cashMachines[0].addTransaction(100);
+        bank.cashMachines[1].addTransaction(200);
 
-        CashMachine machine2 = new CashMachine(10);
-        machine2.addTransaction(200);
-        machine2.addTransaction(-75);
-
-        CashMachine[] cashMachines = {machine1, machine2};
-        Bank bank = new Bank(cashMachines);
-        assertEquals(175, bank.getTotalBalance());
-        assertEquals(2, bank.getWithdrawalsCount());
-        assertEquals(2, bank.getDepositsCount());
-        assertEquals(62.5, bank.getAverageWithdrawal(), 0.1);
-        assertEquals(150, bank.getAverageDeposit(), 0.1);
+        assertEquals(2, bank.getTotalDepositCount());
     }
 
     @Test
-    void testMultipleWithdrawals() {
-        CashMachine machine = new CashMachine(10);
-        machine.addTransaction(-50);
-        machine.addTransaction(-75);
-        CashMachine[] cashMachines = {machine};
-        Bank bank = new Bank(cashMachines);
-        assertEquals(-125, bank.getTotalBalance());
-        assertEquals(2, bank.getWithdrawalsCount());
-        assertEquals(0, bank.getDepositsCount());
-        assertEquals(62.5, bank.getAverageWithdrawal(), 0.1);
-        assertEquals(0, bank.getAverageDeposit());
+    public void testAverageWithdrawal() {
+        bank.cashMachines[0].addTransaction(-50);
+        bank.cashMachines[1].addTransaction(-100);
+
+        assertEquals(-75, bank.getAverageWithdrawal(), 0.001);
     }
 
     @Test
-    void testMultipleDeposits() {
-        CashMachine machine = new CashMachine(10);
-        machine.addTransaction(100);
-        machine.addTransaction(200);
-        CashMachine[] cashMachines = {machine};
-        Bank bank = new Bank(cashMachines);
-        assertEquals(300, bank.getTotalBalance());
-        assertEquals(0, bank.getWithdrawalsCount());
-        assertEquals(2, bank.getDepositsCount());
-        assertEquals(0, bank.getAverageWithdrawal());
-        assertEquals(150, bank.getAverageDeposit(), 0.1);
+    public void testAverageDeposit() {
+        bank.cashMachines[0].addTransaction(100);
+        bank.cashMachines[1].addTransaction(200);
+
+        assertEquals(150, bank.getAverageDeposit(), 0.001);
     }
 
     @Test
-    void testNoTransactions() {
-        CashMachine machine = new CashMachine(10);
-        CashMachine[] cashMachines = {machine};
-        Bank bank = new Bank(cashMachines);
-        assertEquals(0, bank.getTotalBalance());
-        assertEquals(0, bank.getWithdrawalsCount());
-        assertEquals(0, bank.getDepositsCount());
-        assertEquals(0, bank.getAverageWithdrawal());
-        assertEquals(0, bank.getAverageDeposit());
+    public void testEmptyBank() {
+        assertEquals(0, bank.getTotalBalance(), 0.001);
+        assertEquals(0, bank.getTotalWithdrawalCount());
+        assertEquals(0, bank.getTotalDepositCount());
+        assertEquals(0, bank.getAverageWithdrawal(), 0.001);
+        assertEquals(0, bank.getAverageDeposit(), 0.001);
+    }
+
+    @AfterEach
+    public void tearDown() {
+        bank = null;
+    }
+
+    @AfterAll
+    public static void afterAllTests() {
+        System.out.println("Testing completed!");
     }
 }
