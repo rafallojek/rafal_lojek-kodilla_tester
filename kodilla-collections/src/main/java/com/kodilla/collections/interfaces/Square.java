@@ -1,6 +1,6 @@
 package com.kodilla.collections.interfaces;
 
-public class Square {
+public class Square implements Shape {
     private double width;
 
     public Square(double width) {
