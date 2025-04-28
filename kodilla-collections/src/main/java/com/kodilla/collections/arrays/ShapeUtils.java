@@ -5,6 +5,8 @@ import com.kodilla.collections.interfaces.Shape;
 import com.kodilla.collections.interfaces.Square;
 import com.kodilla.collections.interfaces.Triangle;
 
+import java.util.Random;
+
 public class ShapeUtils {
     public static void displayShapeInfo(Shape shape) {
         System.out.println("-----------------------------");

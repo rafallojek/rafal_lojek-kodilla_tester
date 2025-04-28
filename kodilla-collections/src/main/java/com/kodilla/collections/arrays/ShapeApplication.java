@@ -4,11 +4,9 @@ import com.kodilla.collections.interfaces.Circle;
 import com.kodilla.collections.interfaces.Shape;
 import com.kodilla.collections.interfaces.Square;
 import com.kodilla.collections.interfaces.Triangle;
+import java.util.Random;  // <-- dodano
 
-import java.util.Random;
-
-public class ShapeApplication {
-    private static final Random RANDOM = new Random();
+public class ShapeApplication {    // <-- brakowało klasy
 
     public static void main(String[] args) {
         Shape[] shapes = new Shape[5];
@@ -19,20 +17,21 @@ public class ShapeApplication {
     }
 
     private static Shape drawShape() {
-        int drawnShapeKind = RANDOM.nextInt(3);
-        double a = getRandomSize();
+        Random random = new Random();
+        int drawnShapeKind = random.nextInt(3);  // possible values: 0, 1, 2
+        double a = getRandomSize(random);
         if (drawnShapeKind == 0)
             return new Circle(a);
         else if (drawnShapeKind == 1)
             return new Square(a);
         else {
-            double b = getRandomSize();
-            double c = getRandomSize();
+            double b = getRandomSize(random);
+            double c = getRandomSize(random);
             return new Triangle(a, b, c);
         }
     }
 
-    static double getRandomSize() {
-        return RANDOM.nextDouble() * 100 + 1;
+    private static double getRandomSize(Random random) {
+        return random.nextDouble() * 100 + 1;  // possible values: 1.000-100.999...
     }
 }
