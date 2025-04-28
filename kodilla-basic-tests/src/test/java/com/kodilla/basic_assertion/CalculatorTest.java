@@ -30,55 +30,111 @@ public class CalculatorTest {
 
     @Test
     void testAddition() {
-        int result = calculator.add(8, 2);
+        // given
+        int a = 8;
+        int b = 2;
+
+        // when
+        int result = calculator.add(a, b);
+
+        // then
         assertEquals(10, result, "Addition should be correct");
     }
 
     @Test
     void testSubtraction() {
-        int result = calculator.subtract(10, 3);
+        // given
+        int a = 10;
+        int b = 3;
+
+        // when
+        int result = calculator.subtract(a, b);
+
+        // then
         assertEquals(7, result, "Subtraction should be correct");
     }
 
     @Test
     void testMultiplication() {
-        int result = calculator.multiply(7, 6);
+        // given
+        int a = 7;
+        int b = 6;
+
+        // when
+        int result = calculator.multiply(a, b);
+
+        // then
         assertEquals(42, result, "Multiplication should be correct");
     }
 
     @Test
     void testDivision() {
-        double result = calculator.divide(20, 4);
+        // given
+        int a = 20;
+        int b = 4;
+
+        // when
+        double result = calculator.divide(a, b);
+
+        // then
         assertEquals(5.0, result, 0.0001, "Division should be correct");
     }
 
     @Test
     void testDivisionByZero() {
-        calculator.divide(5, 0);
+        // given
+        int a = 5;
+        int b = 0;
+
+        // when & then
+        assertThrows(ArithmeticException.class, () -> calculator.divide(a, b), "Division by zero should throw an exception");
     }
 
     @Test
     void testPowerPositive() {
-        double result = calculator.power(5);
+        // given
+        int a = 5;
+
+        // when
+        double result = calculator.power(a);
+
+        // then
         assertEquals(25.0, result, 0.0001, "Power for positive number should be correct");
     }
 
     @Test
     void testPowerZero() {
-        double result = calculator.power(0);
+        // given
+        int a = 0;
+
+        // when
+        double result = calculator.power(a);
+
+        // then
         assertEquals(0.0, result, 0.0001, "Power for zero should be zero");
     }
 
     @Test
     void testPowerNegative() {
-        double result = calculator.power(-3);
+        // given
+        int a = -3;
+
+        // when
+        double result = calculator.power(a);
+
+        // then
         assertEquals(9.0, result, 0.0001, "Power for negative number should be correct");
     }
 
     @Test
     void testIncorrectPower() {
-        double result = calculator.incorrectPower(5);
+        // given
+        int a = 5;
+
+        // when
+        double result = calculator.incorrectPower(a);
+
+        // then
         assertNotEquals(25.0, result, 0.0001, "Incorrect power should not be correct");
     }
 }
-
