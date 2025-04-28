@@ -3,10 +3,16 @@ package com.kodilla.school;
 public class Grades {
     private int[] values;
     private int size;
+    private Grades geography;
+    private Grades maths;
+    private Grades history;
+    private Grades physics;
+
     public Grades() {
         this.size = 0;
         this.values = new int[0];
     }
+
     public void add(int value) {
         this.size++;
         int[] newTab = new int[this.size];
@@ -14,7 +20,26 @@ public class Grades {
         newTab[this.size - 1] = value;
         this.values = newTab;
     }
+
     public int[] getValues() {
         return values;
+    }
+
+    public double getAverage() {
+        if (this.values.length == 0) {
+            return 0;
+        }
+        double sum = 0;
+        for(int i = 0; i < this.values.length; i++) {
+            sum += this.values[i];
+        }
+        return sum/this.values.length;
+    }
+
+    public double getAverage() {
+        double sum = this.geography.getAverage() +
+                this.history.getAverage() + this.maths.getAverage() +
+                this.physics.getAverage();
+        return sum/4;
     }
 }
