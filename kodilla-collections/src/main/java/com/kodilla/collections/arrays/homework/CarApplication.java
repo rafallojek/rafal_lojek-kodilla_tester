@@ -5,7 +5,7 @@ import java.util.Random;
 public class CarApplication {
 
     public static Car drawCar() {
-        Random random = new Random();
+        Random random = new Random(); // Samochody nieprzypadkowe, tymi miałem okazję jeździć :)
         String[] brands = {"Hyundai", "Volkswagen", "Audi", "Renault", "Citroen"};
         String[] models = {"i30", "Polo", "A3", "Megane", "Berlingo"};
 
