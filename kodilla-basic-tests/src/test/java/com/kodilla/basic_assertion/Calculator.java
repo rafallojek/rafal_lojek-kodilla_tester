@@ -28,4 +28,8 @@ public class Calculator {
     public double incorrectPower(int a) {
         return a + a;
     }
+
+    public int sum(int a, int b) {
+        return a;
+    }
 }
