@@ -1,12 +1,10 @@
 package com.kodilla.school;
 
+import java.util.Arrays;
+
 public class Grades {
     private int[] values;
     private int size;
-    private Grades geography;
-    private Grades maths;
-    private Grades history;
-    private Grades physics;
 
     public Grades() {
         this.size = 0;
@@ -30,16 +28,17 @@ public class Grades {
             return 0;
         }
         double sum = 0;
-        for(int i = 0; i < this.values.length; i++) {
+        for (int i = 0; i < this.values.length; i++) {
             sum += this.values[i];
         }
-        return sum/this.values.length;
+        return (double) sum / this.values.length;
     }
 
-    public double getAverage() {
-        double sum = this.geography.getAverage() +
-                this.history.getAverage() + this.maths.getAverage() +
-                this.physics.getAverage();
-        return sum/4;
+    @Override
+    public String toString() {
+        return "Grades{" +
+                "values=" + Arrays.toString(values) +
+                ", size=" + size +
+                '}';
     }
 }
