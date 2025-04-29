@@ -30,7 +30,6 @@ public class StampsApplication {
 
         System.out.println("Add first (duplicate) stamp " + addedFirst);  // true
         System.out.println("Add second (duplicate) stamp " + addedSecond); // false
-
         System.out.println("Collection Size: " + stamps.size());
 
         System.out.println("Contents of the stamp collection:");
