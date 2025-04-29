@@ -25,6 +25,14 @@ public class StampsApplication {
         stamps.add(stamp7);
         stamps.add(stamp8);
 
+        boolean addedFirst = stamps.add(stamp1);
+        boolean addedSecond = stamps.add(stamp2);
+
+        System.out.println("Add first (duplicate) stamp " + addedFirst);  // true
+        System.out.println("Add second (duplicate) stamp " + addedSecond); // false
+
+        System.out.println("Collection Size: " + stamps.size());
+
         System.out.println("Contents of the stamp collection:");
         for (Stamp stamp : stamps) {
             System.out.println(stamp);
