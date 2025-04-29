@@ -15,6 +15,8 @@ public class StampsApplication {
         Stamp stamp6 = new Stamp("Prague Czech Republic 2019", 35, 20, true);
         Stamp stamp7 = new Stamp("Brno Czech Republic 2018", 37, 23, false);
         Stamp stamp8 = new Stamp("Berlin Germany 2015", 33, 27, false);
+        Stamp stamp9 = new Stamp("Warsaw Poland 2018", 36, 29, false);
+        Stamp stamp10 = new Stamp("Warsaw Poland 2018", 36, 29, false); // Duplicate stamp9
 
         stamps.add(stamp1);
         stamps.add(stamp2); // Duplicate stamp1
@@ -24,6 +26,8 @@ public class StampsApplication {
         stamps.add(stamp6);
         stamps.add(stamp7);
         stamps.add(stamp8);
+        stamps.add(stamp9);
+        stamps.add(stamp10); // Duplicate stamp9
 
         boolean addedFirst = stamps.add(stamp1);
         boolean addedSecond = stamps.add(stamp2);
