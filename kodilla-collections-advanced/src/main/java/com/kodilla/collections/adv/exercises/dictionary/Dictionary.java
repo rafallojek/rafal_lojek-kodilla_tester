@@ -1,9 +1,10 @@
 package com.kodilla.collections.adv.exercises.dictionary;
 
-import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 public class Dictionary {
     Map<String, List<EnglishWord>> dictionary = new HashMap<>();
@@ -13,10 +14,10 @@ public class Dictionary {
     }
     
     public List<EnglishWord> findEnglishWords(String polishWord) {
-        return Collection.emptyList();
+        return Collections.emptyList();
     }
     
     public List<EnglishWord> findEnglishWords(String polishWord, PartOfSpeech partOfSpeech) {
-        return Collection.emptyList();
+        return Collections.emptyList();
     }
 }
