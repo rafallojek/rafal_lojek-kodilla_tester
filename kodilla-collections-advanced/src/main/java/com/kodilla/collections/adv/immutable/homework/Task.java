@@ -25,6 +25,6 @@ public final class Task {
 
     @Override
     public String toString() {
-        return "Task: '" + title + "' (Duration: " + duration + "h, Priority: HIGH)";
+        return "Task: '" + title + "' (Duration: " + duration + "h)";
     }
 }
