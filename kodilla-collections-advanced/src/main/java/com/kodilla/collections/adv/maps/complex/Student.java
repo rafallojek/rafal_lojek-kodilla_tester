@@ -11,15 +11,21 @@ public class Student {
         this.lastname = lastname;
     }
 
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
+        if (this == o) return true;
+        if (!(o instanceof Student)) return false;
         Student student = (Student) o;
-        return Objects.equals(firstname, student.firstname)
-                && Objects.equals(lastname, student.lastname);
+        return Objects.equals(firstname, student.firstname) &&
+                Objects.equals(lastname, student.lastname);
     }
 
     @Override
@@ -27,11 +33,8 @@ public class Student {
         return Objects.hash(firstname, lastname);
     }
 
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
+    @Override
+    public String toString() {
+        return firstname + " " + lastname;
     }
 }
