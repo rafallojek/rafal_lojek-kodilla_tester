@@ -6,12 +6,12 @@ public final class Task {
 
     public Task(String title, int duration) {
         if (title == null || title.trim().isEmpty()) {
-            throw new IllegalArgumentException("Code must be ready within 1 day");
+            throw new IllegalArgumentException("Title cannot be null or empty");
         }
         if (duration <= 0 || duration > 10) {
-            throw new IllegalArgumentException("Duration must be maximum 10 hours");
+            throw new IllegalArgumentException("Duration must be between 1 and 10 hours");
         }
-        this.title = title;
+        this.title = title.trim();
         this.duration = duration;
     }
 
