@@ -2,6 +2,7 @@ package com.kodilla.collections.adv.exercises.dictionary;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,6 +32,9 @@ class DictionaryTestSuite {
         // When
         List<EnglishWord> result = dictionary.findEnglishWords("gra");
         // Then
+        List<EnglishWord> expectedList = new ArrayList<>();
+        expectedList.add(new EnglishWord(PartOfSpeech.NOUN, "play"));
+        expectedList.add(new EnglishWord(PartOfSpeech.NOUN, "game"));
         assertEquals(2, result.size());
     }
 }
