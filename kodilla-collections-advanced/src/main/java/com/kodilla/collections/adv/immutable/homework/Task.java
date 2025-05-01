@@ -3,8 +3,10 @@ package com.kodilla.collections.adv.immutable.homework;
 public final class Task {
     private final String title;
     private final int duration;
+    private final TaskPriority priority;
 
-    public Task(String title, int duration) {
+    public Task(String title, int duration, TaskPriority priority) {
+        this.priority = priority;
         if (title == null || title.trim().isEmpty()) {
             throw new IllegalArgumentException("Title cannot be null or empty");
         }
@@ -23,8 +25,16 @@ public final class Task {
         return duration;
     }
 
+    public TaskPriority getPriority() {
+        return priority;
+    }
+
     @Override
     public String toString() {
-        return "Task: '" + title + "' (Duration: " + duration + "h)";
+        return "Task{" +
+                "title='" + title + '\'' +
+                ", duration=" + duration +
+                ", priority='" + priority + '\'' +
+                '}';
     }
 }
