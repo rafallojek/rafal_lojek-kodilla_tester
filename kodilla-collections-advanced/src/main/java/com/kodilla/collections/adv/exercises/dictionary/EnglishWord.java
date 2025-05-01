@@ -1,5 +1,7 @@
 package com.kodilla.collections.adv.exercises.dictionary;
 
+import java.util.Objects;
+
 public class EnglishWord {
     private final PartOfSpeech partOfSpeech;
     private final String word;
@@ -19,10 +21,12 @@ public class EnglishWord {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         EnglishWord that = (EnglishWord) o;
-        return partOfSpeech == that.partOfSpeech && word.equals(that.word);
+        return partOfSpeech == that.partOfSpeech && Objects.equals(word, that.word);
     }
 
     @Override
