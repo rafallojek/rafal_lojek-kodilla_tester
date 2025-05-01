@@ -13,7 +13,7 @@ public class Dictionary {
     }
     
     public List<EnglishWord> findEnglishWords(String polishWord) {
-        return Collections.emptyList();
+        return dictionary.getOrDefault(polishWord, Collections.emptyList());
     }
     
     public List<EnglishWord> findEnglishWords(String polishWord, PartOfSpeech partOfSpeech) {
