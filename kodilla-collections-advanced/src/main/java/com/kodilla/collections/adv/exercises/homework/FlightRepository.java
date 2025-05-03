@@ -30,7 +30,7 @@ public class FlightRepository {
 
         flights.add(new Flight("Paris", "Hamburg"));
         flights.add(new Flight("Paris", "Toronto"));
-        flights.add(new Flight("Paris", "Lublin"));
+        flights.add(new Flight("Paris", "Warsaw"));
 
         return flights;
     }

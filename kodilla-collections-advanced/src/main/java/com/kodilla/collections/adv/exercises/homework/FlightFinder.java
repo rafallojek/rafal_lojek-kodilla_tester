@@ -12,7 +12,6 @@ public class FlightFinder {
                 result.add(flight);
             }
         }
-
         return result;
 
     }
@@ -24,7 +23,6 @@ public class FlightFinder {
                 result.add(flight);
             }
         }
-
         return result;
 
     }
