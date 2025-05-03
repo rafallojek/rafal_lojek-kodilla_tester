@@ -1,18 +1,21 @@
 package com.kodilla.collections.adv.exercises.homework;
 
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FlightFinderTest {
-
     private final FlightFinder finder = new FlightFinder();
 
     @Test
-    public void testFindFlightsFrom_Lublin() {
-        List<Flight> results = finder.findFlightsFrom("Lublin");
+    public void testFindFlightsFromLublin() {
+        // given
+        String departure = "Lublin";
+
+        // when
+        List<Flight> results = finder.findFlightsFrom(departure);
+
+        // then
         assertEquals(3, results.size());
         assertTrue(results.stream().anyMatch(f -> f.getArrival().equals("Warsaw")));
         assertTrue(results.stream().anyMatch(f -> f.getArrival().equals("Paris")));
@@ -20,8 +23,14 @@ public class FlightFinderTest {
     }
 
     @Test
-    public void testFindFlightsTo_Lublin() {
-        List<Flight> results = finder.findFlightsTo("Lublin");
+    public void testFindFlightsToLublin() {
+        // given
+        String arrival = "Lublin";
+
+        // when
+        List<Flight> results = finder.findFlightsTo(arrival);
+
+        // then
         assertEquals(3, results.size());
         assertTrue(results.stream().anyMatch(f -> f.getDeparture().equals("Warsaw")));
         assertTrue(results.stream().anyMatch(f -> f.getDeparture().equals("Montreal")));
@@ -29,8 +38,14 @@ public class FlightFinderTest {
     }
 
     @Test
-    public void testFindFlightsFrom_Warsaw() {
-        List<Flight> results = finder.findFlightsFrom("Warsaw");
+    public void testFindFlightsFromWarsaw() {
+        // given
+        String departure = "Warsaw";
+
+        // when
+        List<Flight> results = finder.findFlightsFrom(departure);
+
+        // then
         assertEquals(3, results.size());
         assertTrue(results.stream().anyMatch(f -> f.getArrival().equals("Lublin")));
         assertTrue(results.stream().anyMatch(f -> f.getArrival().equals("Montreal")));
@@ -38,8 +53,14 @@ public class FlightFinderTest {
     }
 
     @Test
-    public void testFindFlightsTo_Warsaw() {
-        List<Flight> results = finder.findFlightsTo("Warsaw");
+    public void testFindFlightsToWarsaw() {
+        // given
+        String arrival = "Warsaw";
+
+        // when
+        List<Flight> results = finder.findFlightsTo(arrival);
+
+        // then
         assertEquals(3, results.size());
         assertTrue(results.stream().anyMatch(f -> f.getDeparture().equals("Lublin")));
         assertTrue(results.stream().anyMatch(f -> f.getDeparture().equals("Paris")));
@@ -47,52 +68,100 @@ public class FlightFinderTest {
     }
 
     @Test
-    public void testFindFlightsFrom_Hamburg() {
-        List<Flight> results = finder.findFlightsFrom("Hamburg");
+    public void testFindFlightsFromHamburg() {
+        // given
+        String departure = "Hamburg";
+
+        // when
+        List<Flight> results = finder.findFlightsFrom(departure);
+
+        // then
         assertEquals(3, results.size());
         assertTrue(results.stream().allMatch(f -> isKnownCity(f.getArrival())));
     }
 
     @Test
-    public void testFindFlightsTo_Hamburg() {
-        List<Flight> results = finder.findFlightsTo("Hamburg");
+    public void testFindFlightsToHamburg() {
+        // given
+        String arrival = "Hamburg";
+
+        // when
+        List<Flight> results = finder.findFlightsTo(arrival);
+
+        // then
         assertEquals(3, results.size());
         assertTrue(results.stream().allMatch(f -> isKnownCity(f.getDeparture())));
     }
 
     @Test
-    public void testFindFlightsFrom_Montreal() {
-        List<Flight> results = finder.findFlightsFrom("Montreal");
+    public void testFindFlightsFromMontreal() {
+        // given
+        String departure = "Montreal";
+
+        // when
+        List<Flight> results = finder.findFlightsFrom(departure);
+
+        // then
         assertEquals(3, results.size());
     }
 
     @Test
-    public void testFindFlightsTo_Montreal() {
-        List<Flight> results = finder.findFlightsTo("Montreal");
+    public void testFindFlightsToMontreal() {
+        // given
+        String arrival = "Montreal";
+
+        // when
+        List<Flight> results = finder.findFlightsTo(arrival);
+
+        // then
         assertEquals(2, results.size());
     }
 
     @Test
-    public void testFindFlightsFrom_Toronto() {
-        List<Flight> results = finder.findFlightsFrom("Toronto");
+    public void testFindFlightsFromToronto() {
+        // given
+        String departure = "Toronto";
+
+        // when
+        List<Flight> results = finder.findFlightsFrom(departure);
+
+        // then
         assertEquals(3, results.size());
     }
 
     @Test
-    public void testFindFlightsTo_Toronto() {
-        List<Flight> results = finder.findFlightsTo("Toronto");
+    public void testFindFlightsToToronto() {
+        // given
+        String arrival = "Toronto";
+
+        // when
+        List<Flight> results = finder.findFlightsTo(arrival);
+
+        // then
         assertEquals(3, results.size());
     }
 
     @Test
-    public void testFindFlightsFrom_Paris() {
-        List<Flight> results = finder.findFlightsFrom("Paris");
+    public void testFindFlightsFromParis() {
+        // given
+        String departure = "Paris";
+
+        // when
+        List<Flight> results = finder.findFlightsFrom(departure);
+
+        // then
         assertEquals(3, results.size());
     }
 
     @Test
-    public void testFindFlightsTo_Paris() {
-        List<Flight> results = finder.findFlightsTo("Paris");
+    public void testFindFlightsToParis() {
+        // given
+        String arrival = "Paris";
+
+        // when
+        List<Flight> results = finder.findFlightsTo(arrival);
+
+        // then
         assertEquals(3, results.size());
     }
 
