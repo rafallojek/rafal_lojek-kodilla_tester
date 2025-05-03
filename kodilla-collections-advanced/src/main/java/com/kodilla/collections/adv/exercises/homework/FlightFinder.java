@@ -13,7 +13,6 @@ public class FlightFinder {
             }
         }
         return result;
-
     }
 
     public List<Flight> findFlightsTo(String arrival) {
@@ -24,6 +23,5 @@ public class FlightFinder {
             }
         }
         return result;
-
     }
 }
