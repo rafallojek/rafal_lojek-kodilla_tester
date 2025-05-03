@@ -1,19 +1,31 @@
 package com.kodilla.collections.adv.exercises.homework;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class FlightFinder {
 
     public List<Flight> findFlightsFrom(String departure) {
-        return FlightRepository.getFlightsTable().stream()
-                .filter(flight -> flight.getDeparture().equalsIgnoreCase(departure))
-                .collect(Collectors.toList());
+        List<Flight> result = new ArrayList<>();
+        for (Flight flight : FlightRepository.getFlightsTable()) {
+            if (flight.getDeparture().equalsIgnoreCase(departure)) {
+                result.add(flight);
+            }
+        }
+
+        return result;
+
     }
 
     public List<Flight> findFlightsTo(String arrival) {
-        return FlightRepository.getFlightsTable().stream()
-                .filter(flight -> flight.getArrival().equalsIgnoreCase(arrival))
-                .collect(Collectors.toList());
+        List<Flight> result = new ArrayList<>();
+        for (Flight flight : FlightRepository.getFlightsTable()) {
+            if (flight.getArrival().equalsIgnoreCase(arrival)) {
+                result.add(flight);
+            }
+        }
+
+        return result;
+
     }
 }
