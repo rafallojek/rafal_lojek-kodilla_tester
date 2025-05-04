@@ -28,7 +28,7 @@ public class UsersManagerTest {
         List<User> olderUsers = UsersManager.filterUsersOlderThan(ageLimit);
 
         // Then
-        assertEquals(2, olderUsers.size());  // Walter (50), Mike (57)
+        assertEquals(3, olderUsers.size());  // Walter (50), Gus (49), Mike (57)
         for (User user : olderUsers) {
             assertTrue(user.getAge() > ageLimit);
         }
