@@ -1,4 +1,4 @@
-package com.kodilla.stream.homework;
+package com.kodilla.stream;
 
 public class User {
     private String username;
