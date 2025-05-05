@@ -1,6 +1,5 @@
 package com.kodilla.stream.homework;
 
-import com.kodilla.stream.UserForumStats;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

@@ -1,6 +1,5 @@
 package com.kodilla.stream.homework;
 
-import com.kodilla.stream.UserForumStats;
 import com.kodilla.stream.UsersRepositoryForumStats;
 
 import java.util.List;

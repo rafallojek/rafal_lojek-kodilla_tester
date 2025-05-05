@@ -1,5 +1,7 @@
 package com.kodilla.stream;
 
+import com.kodilla.stream.homework.UserForumStats;
+
 import java.util.ArrayList;
 import java.util.List;
 
