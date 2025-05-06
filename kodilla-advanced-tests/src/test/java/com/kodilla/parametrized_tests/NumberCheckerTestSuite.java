@@ -1,6 +1,5 @@
 package com.kodilla.parametrized_tests;
 
-import com.kodilla.parametrized_test.NumberChecker;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
