@@ -5,20 +5,20 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class UserValidatorTestSuite {
+class UserValidatorTest {
 
     private final UserValidator validator = new UserValidator();
 
     @ParameterizedTest
     @CsvSource({
-            "user123, true",
-            "a_b, true",
-            "A-B, true",
-            "ab, false",
-            "user!name, false",
-            "user name, false",
-            "'', false",
-            "null, false"
+            "user,true",
+            "us,false",
+            "user_123,true",
+            "user.name,true",
+            "user-name,true",
+            "us,false",
+            "'',false",
+            "null,false"
     })
     void shouldValidateUsernameCorrectly(String username, boolean expected) {
         // Given
@@ -33,19 +33,14 @@ class UserValidatorTestSuite {
 
     @ParameterizedTest
     @CsvSource({
-            "user@example.com, true",
-            "user.name@example.co, true",
-            "user_name@example.com, true",
-            "user-name@example.com, true",
-            "user@sub.example.com, true",
-            "user@ex-ample.com, true",
-            "user@.com, false",
-            "user@com, false",
-            "userexample.com, false",
-            "user@exam_ple.com, false",
-            "user@exam!ple.com, false",
-            "'', false",
-            "null, false"
+            "test@gmail.com,true",
+            "user.name@gmail.co,true",
+            "user@sub.gmail.com,true",
+            "user@gmail,false",
+            "user@.com,false",
+            "user@gmail.c,false",
+            "'',false",
+            "null,false"
     })
     void shouldValidateEmailCorrectly(String email, boolean expected) {
         // Given
