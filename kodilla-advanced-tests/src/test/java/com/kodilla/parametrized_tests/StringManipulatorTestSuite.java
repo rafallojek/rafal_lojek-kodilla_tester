@@ -16,7 +16,12 @@ public class StringManipulatorTestSuite {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"test,4", " OtHEr ,5", "E V e n t,5", "null ,4", "A,1"})
+    @CsvSource(value = {"test,4",
+            " OtHEr ,5",
+            "E V e n t,5",
+            "null ,4",
+            "A,1"})
+
     public void shouldCalculateStringLengthWithoutSpaces(String input, int expected) {
         assertEquals(expected, manipulator.getStringLengthWithoutSpaces(input));
     }
