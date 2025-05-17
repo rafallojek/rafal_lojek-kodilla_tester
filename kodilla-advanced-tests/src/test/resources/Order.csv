@@ -1,0 +1,9 @@
+Nr,Operacja,Dane wejściowe / Warunki,Oczekiwany wynik / Sprawdzenie,Uwagi / Cel testu
+
+1,Dodanie pojedynczego zamówienia,"Order(value=100, date=2025-05-10, login=""user1"")","Zamówienie dodane, liczba zamówień = 1","Podstawowa funkcjonalność dodawania"
+2,Dodanie kilku różnych zamówień,"3 zamówienia z różnymi datami i loginami","Liczba zamówień = 3","Sprawdzenie dodawania wielu unikalnych zamówień"
+3,Dodanie duplikatu zamówienia,"Zamówienie identyczne czyli duplikat istniejącego","Liczba zamówień nie wzrasta","Set powinien eliminować duplikaty"
+4,Pobranie zamówień z zakresu dat,"startDate=2025-05-12, endDate=2025-05-22","Zwrócone zamówienia tylko z datami w tym zakresie","Test filtrowania po dacie"
+5,Pobranie zamówień z zakresu jak dalej,"minValue=150, maxValue=300","Zwrócone zamówienia w podanym zakresie","Test filtrowania po wartości"
+6,Pobranie liczby zamówień,-,"Zwraca 3","Sprawdzenie poprawności liczenia"
+7,Zsumowanie wartości zamówień,-,"Zwraca sumę wartości wszystkich zamówień","Sprawdzenie poprawności sumowania"
