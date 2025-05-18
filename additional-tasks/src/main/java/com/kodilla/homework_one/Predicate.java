@@ -5,7 +5,9 @@ public class Predicate extends SentencePart {
     protected String[] getWords() {
         return new String[]{
                 "sings", "vanishes", "waits", "wanders", "shouts",
-                "flows", "dances", "glows", "falls", "whispers"
+                "flows", "dances", "glows", "falls", "whispers",
+                "sleeps", "rises", "cries", "dreams", "listens",
+                "flies", "burns", "hovers", "laughs", "echoes"
         };
     }
 }
