@@ -36,27 +36,22 @@ public class StringCollection {
 
     public boolean removeElement(String s) {
         Element current = collectionHead;
-
         while (current != null) {
             if (current.getValue().equals(s)) {
                 Element prev = current.getPrev();
                 Element next = current.getNext();
-
                 if (prev != null) {
                     prev.setNext(next);
                 } else {
                     collectionHead = next;
                 }
-
                 if (next != null) {
                     next.setPrev(prev);
                 }
-
                 return true;
             }
             current = current.getNext();
         }
-
         return false;
     }
 }
