@@ -8,7 +8,7 @@ public class UsersManager {
     public static List<String> filterChemistGroupUsernames() {
         return UsersRepository.getUsersList()
                 .stream()
-                .filter(user -> user.getGroup().equals("Chemists"))
+                .filter(user -> user.getGroup().equals("Chemist"))
                 .map(User::getUsername)
                 .collect(Collectors.toList());
     }
