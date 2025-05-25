@@ -12,13 +12,6 @@ public class SimpleApplication {
     }
 
     public String processMessage(String message, String receiver) {
-        if (checkReceiver(receiver)) {
-            return this.messageService.send(message, receiver);
-        }
-        return null;
-    }
-
-    private boolean checkReceiver(String receiver) {
-        return receiver != null && !receiver.isEmpty();
+        return messageService.send(message, receiver);
     }
 }
