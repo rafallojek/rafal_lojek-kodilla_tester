@@ -1,9 +1,10 @@
-package com.kodilla.spring.basic.spring_configuration;
+package com.kodilla.spring.basic.spring_configuration; !
 
-public class Dog implements Animal {
+import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Primary;
 
-    @Override
-    public String getVoice() {
-        return "Bark bark";
-    }
+@Component
+@Primary
+public abstract class Dog implements Animal {
+    // ...
 }
