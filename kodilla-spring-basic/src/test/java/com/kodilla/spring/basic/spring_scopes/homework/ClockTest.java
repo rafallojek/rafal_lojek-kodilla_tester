@@ -18,11 +18,12 @@ class ClockTest {
         Clock clock2 = context.getBean(Clock.class);
 
         // then
-        System.out.println("Clock1 time: " + clock1.getTime());
-        System.out.println("Clock2 time: " + clock2.getTime());
+        System.out.println("Clock1: " + clock1.getTime());
+        System.out.println("Clock2: " + clock2.getTime());
 
-        assertNotEquals(clock1.getTime(), clock2.getTime());
+        assertNotEquals(clock1.getTime(), clock2.getTime(), "The times should be different for prototype beans");
 
         context.close();
     }
 }
+

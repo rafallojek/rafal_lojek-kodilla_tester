@@ -3,19 +3,19 @@ package com.kodilla.spring.basic.spring_scopes.homework;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalTime;
+import java.time.Instant;
 
 @Component
 @Scope("prototype")
 public class Clock {
 
-    private final LocalTime time;
+    private final Instant time;
 
     public Clock() {
-        this.time = LocalTime.now();
+        this.time = Instant.now();
     }
 
-    public LocalTime getTime() {
+    public Instant getTime() {
         return time;
     }
 }
