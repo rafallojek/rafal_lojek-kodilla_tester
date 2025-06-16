@@ -1,6 +1,5 @@
 package com.kodilla.rest.controller;
 
-import com.kodilla.rest.controller.BookController;
 import com.kodilla.rest.domain.BookDto;
 import com.kodilla.rest.service.BookService;
 import org.junit.jupiter.api.Test;
