@@ -21,8 +21,13 @@ class BookController {
         return bookService.getBooks();
     }
 
-    @PostMapping                                         // [1]
-    public void addBook(@RequestBody BookDto bookDto) {  // [2]
+    @PostMapping
+    public void addBook(@RequestBody BookDto bookDto) {
         bookService.addBook(bookDto);
+    }
+
+    @DeleteMapping
+    public void removeBook(@RequestBody BookDto bookDto) {
+        bookService.removeBook(bookDto);
     }
 }
