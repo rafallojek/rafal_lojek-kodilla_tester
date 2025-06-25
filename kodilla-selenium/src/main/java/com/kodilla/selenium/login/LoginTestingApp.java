@@ -12,7 +12,7 @@ public class LoginTestingApp {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("==remote-allow-origins=*");
         WebDriver driver = new ChromeDriver(chromeOptions);
-        driver.get("https://kodilla.com/pl/test/login");
+        driver.get("https://kodilla.com/pl/test/login/");
 
         WebElement emailField = driver.findElement(By.xpath("//html/body/section/form/div[1]/input"));
         emailField.sendKeys("testuser@gmail.com");
