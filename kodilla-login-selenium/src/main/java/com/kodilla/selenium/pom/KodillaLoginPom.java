@@ -2,8 +2,6 @@ package com.kodilla.selenium.pom;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -20,15 +18,9 @@ public class KodillaLoginPom {
 
     WebDriver driver;
 
-    public KodillaLoginPom() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver");
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--remote-allow-origins=*");
-        driver = new ChromeDriver(chromeOptions);
+    public KodillaLoginPom(WebDriver driver) {
+        this.driver = driver;
         PageFactory.initElements(driver, this);
-
-        driver.navigate().to("https://kodilla.com/pl/test/login");
-
     }
 
     public boolean login(String email, String password) {
@@ -38,9 +30,5 @@ public class KodillaLoginPom {
         String message = driver.switchTo().alert().getText();
         driver.switchTo().alert().dismiss();
         return message.equals("Jesteś teraz zalogowany!");
-    }
-
-    public void close() {
-        driver.close();
     }
 }
