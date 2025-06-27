@@ -54,6 +54,6 @@ public class StoreSearchTest {
         int expectedCount = expectedResults.get(phrase.equalsIgnoreCase("NoteBook") ? "NoteBook" : phrase);
 
         Assertions.assertEquals(expectedCount, results.size(),
-                "Niepoprawna liczba wyników dla frazy: " + phrase);
+                "Incorrect number of results for phrase: " + phrase);
     }
 }
