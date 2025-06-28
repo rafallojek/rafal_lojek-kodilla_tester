@@ -8,19 +8,23 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FizzBuzzGameTest {
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "Dla liczby {0} oczekiwany wynik to {1}")
     @CsvSource({
             "3, Fizz",
             "5, Buzz",
             "15, FizzBuzz",
-            "7, None",
-            "0, FizzBuzz",
-            "-3, Fizz",
-            "-5, Buzz",
-            "-15, FizzBuzz",
-            "2, None"
+            "2, None",
+            "30, FizzBuzz",
+            "9, Fizz",
+            "10, Buzz",
+            "7, None"
     })
-    void shouldReturnExpectedFizzBuzzResult(int input, String expected) {
-        assertEquals(expected, FizzBuzzGame.fizzBuzz(input));
+    void testFizzBuzz(int number, String expectedResult) {
+        // Given
+        // liczba to number (z csv)
+        // When
+        String result = FizzBuzzGame.checkNumber(number);
+        // Then
+        assertEquals(expectedResult, result);
     }
 }

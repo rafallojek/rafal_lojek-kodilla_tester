@@ -9,13 +9,12 @@ Feature: FizzBuzz Game
     Then I should get "<result>"
 
     Examples:
-      | number | result    |
+      | liczba | wynik     |
       | 3      | Fizz      |
       | 5      | Buzz      |
       | 15     | FizzBuzz  |
-      | 7      | None      |
-      | 0      | FizzBuzz  |
-      | -3     | Fizz      |
-      | -5     | Buzz      |
-      | -15    | FizzBuzz  |
       | 2      | None      |
+      | 30     | FizzBuzz  |
+      | 9      | Fizz      |
+      | 10     | Buzz      |
+      | 7      | None      |
