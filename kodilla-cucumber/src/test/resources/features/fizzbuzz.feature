@@ -1,4 +1,4 @@
-Feature: FizzBuzz Game
+Feature: FizzBuzzGame
   As a user
   I want to get a specific word based on the divisibility of a number
   So that I can understand if it’s divisible by 3, 5, both or neither
@@ -9,7 +9,7 @@ Feature: FizzBuzz Game
     Then I should get "<result>"
 
     Examples:
-      | liczba | wynik     |
+      | number | result     |
       | 3      | Fizz      |
       | 5      | Buzz      |
       | 15     | FizzBuzz  |

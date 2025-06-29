@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FizzBuzzGameTest {
 
-    @ParameterizedTest(name = "Dla liczby {0} oczekiwany wynik to {1}")
+    @ParameterizedTest(name = "For the number {0} expected result is {1}")
     @CsvSource({
             "3, Fizz",
             "5, Buzz",
@@ -21,7 +21,6 @@ class FizzBuzzGameTest {
     })
     void testFizzBuzz(int number, String expectedResult) {
         // Given
-        // liczba to number (z csv)
         // When
         String result = FizzBuzzGame.checkNumber(number);
         // Then
