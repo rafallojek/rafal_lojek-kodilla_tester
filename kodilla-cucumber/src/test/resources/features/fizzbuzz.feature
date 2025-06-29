@@ -1,4 +1,4 @@
-Feature: FizzBuzzGame
+Feature: FizzBuzzSteps
   As a user
   I want to get a specific word based on the divisibility of a number
   So that I can understand if it’s divisible by 3, 5, both or neither
