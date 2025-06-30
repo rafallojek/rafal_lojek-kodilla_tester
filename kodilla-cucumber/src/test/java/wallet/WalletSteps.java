@@ -45,4 +45,8 @@ public class WalletSteps {
     public void wallet_balance_should_be(int expectedBalance) {
         assertEquals(expectedBalance, wallet.getBalance());
     }
+
+    @When("I check the balance of my wallet")
+    public void i_check_the_balance_of_my_wallet() {
+    }
 }
