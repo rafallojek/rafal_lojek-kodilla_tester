@@ -1,7 +1,6 @@
 package com.kodilla.selenium.pom;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -27,8 +26,14 @@ public class KodillaLoginPom {
         emailField.sendKeys(email);
         passwordField.sendKeys(password);
         loginButton.click();
-        String message = driver.switchTo().alert().getText();
-        driver.switchTo().alert().dismiss();
-        return message.equals("Jesteś teraz zalogowany!");
+
+        try {
+            Alert alert = driver.switchTo().alert();
+            String message = alert.getText();
+            alert.dismiss();
+            return message.equals("Jesteś teraz zalogowany!");
+        } catch (NoAlertPresentException e) {
+            return false;
+        }
     }
 }

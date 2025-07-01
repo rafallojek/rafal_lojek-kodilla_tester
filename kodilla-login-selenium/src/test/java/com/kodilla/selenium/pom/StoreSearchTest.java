@@ -3,6 +3,9 @@ package com.kodilla.selenium.pom;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 import java.util.List;
 import java.util.Map;
@@ -50,8 +53,21 @@ public class StoreSearchTest {
         inputField.clear();
         inputField.sendKeys(phrase);
 
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".element"), 0));
+
         List<WebElement> results = driver.findElements(By.cssSelector(".element"));
-        int expectedCount = expectedResults.get(phrase.equalsIgnoreCase("NoteBook") ? "NoteBook" : phrase);
+
+        String originalKey = expectedResults.keySet().stream()
+                .filter(k -> k.equalsIgnoreCase(phrase))
+                .findFirst()
+                .orElse(null);
+
+        Assertions.assertNotNull(originalKey, "Phrase not found in expectedResults: " + phrase);
+
+        int expectedCount = expectedResults.get(originalKey);
+
+        System.out.println("Phrase: " + phrase + ", Expected: " + expectedCount + ", Actual: " + results.size());
 
         Assertions.assertEquals(expectedCount, results.size(),
                 "Incorrect number of results for phrase: " + phrase);

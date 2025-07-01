@@ -1,19 +1,19 @@
 package com.kodilla.selenium.pom;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
+import org.junit.jupiter.api.*;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.time.Duration;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class KodillaLoginPomTest {
 
     KodillaLoginPom loginPom;
-
     WebDriver driver;
 
     @BeforeEach
@@ -30,19 +30,34 @@ public class KodillaLoginPomTest {
         String email = "test@toniedziala.pl";
         String password = "password";
         boolean loggedIn = loginPom.login(email, password);
-        assertFalse(loggedIn);
+        assertFalse(loggedIn, "Login should fail with incorrect credentials");
     }
 
     @Test
     public void testLoginPage_CheckPositiveValidation() {
         String email = "test@kodilla.com";
         String password = "kodilla123";
+
+        // Poczekaj na alert, jeśli jest
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        boolean alertPresent;
+        try {
+            wait.until(ExpectedConditions.alertIsPresent());
+            alertPresent = true;
+        } catch (TimeoutException e) {
+            alertPresent = false;
+        }
+
         boolean loggedIn = loginPom.login(email, password);
-        assertTrue(loggedIn);
+
+        assertTrue(alertPresent, "Expected alert on successful login");
+        assertTrue(loggedIn, "Login should succeed with correct credentials");
     }
 
     @AfterEach
-    public void testDown() {
-        driver.close();
+    public void tearDown() {
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
