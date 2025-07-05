@@ -8,13 +8,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class ClockTest {
 
     @Test
-    void shouldReturnDifferentTimeForDifferentPrototypeBeans() {
+    void shouldReturnDifferentTimeForDifferentPrototypeBeans() throws InterruptedException {
         // given
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext("com.kodilla.spring.basic.spring_scopes.homework");
 
         // when
         Clock clock1 = context.getBean(Clock.class);
+        Thread.sleep(10);
         Clock clock2 = context.getBean(Clock.class);
 
         // then
@@ -26,4 +27,3 @@ class ClockTest {
         context.close();
     }
 }
-

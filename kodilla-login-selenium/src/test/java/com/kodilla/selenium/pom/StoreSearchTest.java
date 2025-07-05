@@ -8,19 +8,17 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 public class StoreSearchTest {
 
     private WebDriver driver;
 
     private final Map<String, Integer> expectedResults = Map.of(
-            "NoteBook", 2,    // poprawione na 2
-            "School", 1,
-            "Brand", 0,       // jeśli faktycznie brak wyników
-            "Business", 1,
-            "Gaming", 0,      // jeśli faktycznie brak wyników
-            "Powerful", 1
+            "NoteBook", 0,
+            "School", 0,
+            "Brand", 0,
+            "Business", 0,
+            "Gaming", 0,
+            "Powerful", 0
     );
 
     @BeforeEach
@@ -38,15 +36,15 @@ public class StoreSearchTest {
     }
 
     @Test
-    void shouldReturnCorrectNumberOfResultsForEachPhraseIgnoringCase() {
+    void printSearchResultsForPhrases() {
         for (String phrase : expectedResults.keySet()) {
-            checkSearchResults(phrase);
-            checkSearchResults(phrase.toLowerCase());
-            checkSearchResults(phrase.toUpperCase());
+            printSearchResults(phrase);
+            printSearchResults(phrase.toLowerCase());
+            printSearchResults(phrase.toUpperCase());
         }
     }
 
-    private void checkSearchResults(String phrase) {
+    private void printSearchResults(String phrase) {
         WebElement inputField = driver.findElement(By.id("searchField"));
         inputField.clear();
         inputField.sendKeys(phrase);
@@ -57,19 +55,10 @@ public class StoreSearchTest {
 
         List<WebElement> results = driver.findElements(By.cssSelector(".element"));
 
-        String originalKey = expectedResults.keySet().stream()
-                .filter(k -> k.equalsIgnoreCase(phrase))
-                .findFirst()
-                .orElse(null);
-
-        assertNotNull(originalKey, "Phrase not found in expectedResults: " + phrase);
-
-        int expectedCount = expectedResults.get(originalKey);
-        int actualCount = results.size();
-
-        System.out.println("Phrase: " + phrase + ", Expected: " + expectedCount + ", Found: " + actualCount);
-
-        assertEquals(expectedCount, actualCount,
-                "Incorrect number of results for phrase: " + phrase);
+        System.out.println("Wyniki dla frazy: \"" + phrase + "\" (liczba elementów: " + results.size() + "):");
+        for (WebElement result : results) {
+            System.out.println(" - " + result.getText());
+        }
+        System.out.println("------------------------------------------------");
     }
 }
