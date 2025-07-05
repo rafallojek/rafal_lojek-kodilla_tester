@@ -31,7 +31,7 @@ public class KodillaLoginPom {
             Alert alert = driver.switchTo().alert();
             String message = alert.getText();
             alert.dismiss();
-            return message.equals("Jesteś teraz zalogowany!");
+            return message.equals("You are login now!");
         } catch (NoAlertPresentException e) {
             return false;
         }

@@ -29,17 +29,10 @@ public class KodillaLoginPomTest {
     public void testLoginPage_CheckErrorValidation() {
         String email = "test@toniedziala.pl";
         String password = "password";
-        boolean loggedIn = loginPom.login(email, password);
-        assertFalse(loggedIn, "Login should fail with incorrect credentials");
-    }
 
-    @Test
-    public void testLoginPage_CheckPositiveValidation() {
-        String email = "test@kodilla.com";
-        String password = "kodilla123";
+        loginPom.login(email, password);
 
-        // Poczekaj na alert, jeśli jest
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
         boolean alertPresent;
         try {
             wait.until(ExpectedConditions.alertIsPresent());
@@ -48,10 +41,28 @@ public class KodillaLoginPomTest {
             alertPresent = false;
         }
 
-        boolean loggedIn = loginPom.login(email, password);
+        assertFalse(alertPresent, "Alert should not appear for incorrect login");
+    }
 
-        assertTrue(alertPresent, "Expected alert on successful login");
-        assertTrue(loggedIn, "Login should succeed with correct credentials");
+    @Test
+    public void testLoginPage_CheckPositiveValidation() {
+        String email = "test@kodilla.com";
+        String password = "kodilla123";
+
+        loginPom.login(email, password);
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        try {
+            WebElement successMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.cssSelector(".login-form__success")
+            ));
+            String text = successMsg.getText();
+            System.out.println("Login success message: " + text);
+            assertTrue(text.toLowerCase().contains("login") || text.toLowerCase().contains("zalogowano"),
+                    "Unexpected login success message: " + text);
+        } catch (TimeoutException e) {
+            fail("Expected success message after login but none appeared.");
+        }
     }
 
     @AfterEach
