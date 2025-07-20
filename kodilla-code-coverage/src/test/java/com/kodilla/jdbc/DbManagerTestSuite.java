@@ -97,38 +97,44 @@ class DbManagerTestSuite {
     void testSelectUsersAndPosts() throws SQLException {
         // Given
         Statement statement = dbManager.getConnection().createStatement();
+        statement.executeUpdate(
+                "INSERT INTO USERS(FIRSTNAME, LASTNAME) VALUES ('TestFirst', 'TestLast')");
+        ResultSet rs = statement.executeQuery(
+                "SELECT ID FROM USERS WHERE FIRSTNAME = 'TestFirst' AND LASTNAME = 'TestLast' ORDER BY ID DESC LIMIT 1");
+        int testUserId = -1;
+        if(rs.next()) {
+            testUserId = rs.getInt("ID");
+        }
+
+        statement.executeUpdate(
+                "INSERT INTO POSTS(USER_ID, BODY) VALUES ("+testUserId+", 'Test Post 1')");
+        statement.executeUpdate(
+                "INSERT INTO POSTS(USER_ID, BODY) VALUES ("+testUserId+", 'Test Post 2')");
 
         // When
         String sql = "SELECT USERS.FIRSTNAME, USERS.LASTNAME " +
-                "FROM USERS " +
-                "JOIN POSTS ON USERS.ID = POSTS.USER_ID " +
+                "FROM USERS JOIN POSTS ON USERS.ID = POSTS.USER_ID " +
                 "GROUP BY USERS.ID " +
                 "HAVING COUNT(POSTS.ID) >= 2";
-        ResultSet rs = statement.executeQuery(sql);
+        rs = statement.executeQuery(sql);
 
         // Then
         int counter = 0;
-        System.out.println("Users with at least 2 posts:");
-        while (rs.next()) {
+        boolean testUserFound = false;
+        while(rs.next()) {
             String firstname = rs.getString("FIRSTNAME");
             String lastname = rs.getString("LASTNAME");
             System.out.println(firstname + " " + lastname);
+            if(firstname.equals("TestFirst") && lastname.equals("TestLast")) {
+                testUserFound = true;
+            }
             counter++;
         }
+
+        Assertions.assertTrue(testUserFound, "The test user should be on the this list");
+        statement.executeUpdate("DELETE FROM POSTS WHERE USER_ID = " + testUserId);
+        statement.executeUpdate("DELETE FROM USERS WHERE ID = " + testUserId);
         rs.close();
-
-        String countSql = "SELECT COUNT(*) AS CNT FROM (" +
-                "SELECT USERS.ID FROM USERS " +
-                "JOIN POSTS ON USERS.ID = POSTS.USER_ID " +
-                "GROUP BY USERS.ID HAVING COUNT(POSTS.ID) >= 2 ) AS T";
-        ResultSet rsCount = statement.executeQuery(countSql);
-        int dbCount = 0;
-        if (rsCount.next()) {
-            dbCount = rsCount.getInt("CNT");
-        }
-        rsCount.close();
         statement.close();
-
-        Assertions.assertEquals(dbCount, counter);
     }
 }
