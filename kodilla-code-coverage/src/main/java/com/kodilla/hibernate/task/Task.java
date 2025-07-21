@@ -2,6 +2,7 @@ package com.kodilla.hibernate.task;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDate;
 
 
