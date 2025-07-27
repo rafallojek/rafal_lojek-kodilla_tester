@@ -1,5 +1,6 @@
 .gradle
 /build/
+!/build/reports/jacocoRootReport/html/
 **/out
 **/build
 
