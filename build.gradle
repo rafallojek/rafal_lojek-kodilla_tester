@@ -1,18 +1,34 @@
 plugins {
     id 'java'
+    id 'jacoco'
 }
 
 group = 'com.kodilla'
 version = '1.0-SNAPSHOT'
 
+jacoco {
+    toolVersion = "0.8.10"
+}
+
+subprojects {
+    apply plugin: 'jacoco'
+}
+
+task jacocoRootReport(type: JacocoReport) {
+    dependsOn subprojects.findAll { it.tasks.findByName('test') }*.test
+
+    executionData fileTree(dir: '.', include: '**/build/jacoco/*.exec')
+
+    sourceDirectories.setFrom files(subprojects.findAll { it.plugins.hasPlugin('java') }.collect { it.sourceSets.main.allSource.srcDirs })
+    classDirectories.setFrom files(subprojects.findAll { it.plugins.hasPlugin('java') }.collect { it.sourceSets.main.output })
+
+    reports {
+        html.required = true
+        xml.required = false
+        csv.required = false
+    }
+}
+
 repositories {
     mavenCentral()
-}
-
-dependencies {
-
-}
-
-test {
-    useJUnitPlatform()
 }
