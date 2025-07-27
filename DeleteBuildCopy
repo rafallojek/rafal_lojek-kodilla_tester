@@ -1,0 +1,32 @@
+@echo off
+setlocal enabledelayedexpansion
+
+REM 1. Delete all JAR files from build/libs directory
+echo Deleting JAR files from build/libs...
+del /q build\libs\*.jar
+
+REM 2. Run gradlew build
+echo Building the project...
+call gradlew.bat build
+
+REM 3. Check if a JAR file was created
+set JAR_FOUND=false
+for %%F in (build\libs\*.jar) do (
+    set JAR_FILE=%%F
+    set JAR_FOUND=true
+    goto :found
+)
+
+:found
+if "%JAR_FOUND%"=="true" (
+    echo JAR file found: %JAR_FILE%
+    REM 4. Copy the JAR file to C:\project
+    if not exist "C:\project" mkdir "C:\project"
+    copy /Y "!JAR_FILE!" "C:\project\"
+    echo JAR file copied to C:\project
+) else (
+    echo No JAR file found. Build failed.
+    exit /b 1
+)
+
+endlocal
