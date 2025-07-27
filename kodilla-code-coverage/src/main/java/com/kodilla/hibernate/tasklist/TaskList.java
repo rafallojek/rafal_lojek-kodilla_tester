@@ -11,7 +11,7 @@ import java.util.List;
 @Table(name = "TASKLISTS")
 public class TaskList {
 
-    private int id;
+    private Integer id;
     private String listName;
     private String description;
     private List<Task> tasks = new ArrayList<>();
@@ -26,9 +26,8 @@ public class TaskList {
 
     @Id
     @GeneratedValue
-    @NotNull
     @Column(name = "ID", unique = true)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -57,15 +56,15 @@ public class TaskList {
         this.tasks = tasks;
     }
 
-    private void setId(int id) {
+    protected void setId(Integer id) {
         this.id = id;
     }
 
-    private void setListName(String listName) {
+    protected void setListName(String listName) {
         this.listName = listName;
     }
 
-    private void setDescription(String description) {
+    protected void setDescription(String description) {
         this.description = description;
     }
 }

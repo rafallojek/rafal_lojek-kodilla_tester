@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Table(name = "TASKS")
 public class Task {
 
-    private int id;
+    private Integer id;
     private String description;
     private LocalDate created;
     private int duration;
@@ -28,9 +28,8 @@ public class Task {
 
     @Id
     @GeneratedValue
-    @NotNull
     @Column(name = "ID", unique = true)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -70,19 +69,19 @@ public class Task {
         this.taskList = taskList;
     }
 
-    private void setId(int id) {
+    protected void setId(Integer id) {
         this.id = id;
     }
 
-    private void setDescription(String description) {
+    protected void setDescription(String description) {
         this.description = description;
     }
 
-    private void setCreated(LocalDate created) {
+    protected void setCreated(LocalDate created) {
         this.created = created;
     }
 
-    private void setDuration(int duration) {
+    protected void setDuration(int duration) {
         this.duration = duration;
     }
 }
