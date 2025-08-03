@@ -3,29 +3,43 @@ plugins {
     id 'jacoco'
 }
 
-group = 'com.kodilla'
-version = '1.0-SNAPSHOT'
-
 jacoco {
     toolVersion = "0.8.10"
 }
 
 subprojects {
+    apply plugin: 'java'
     apply plugin: 'jacoco'
 }
 
 task jacocoRootReport(type: JacocoReport) {
-    dependsOn subprojects.findAll { it.tasks.findByName('test') }*.test
+    // Zależności tylko tam, gdzie istnieje task 'test'
+    dependsOn(subprojects.collect { it.tasks.findByName('test') }.findAll { it != null })
 
-    executionData fileTree(dir: '.', include: '**/build/jacoco/*.exec')
+    doFirst {
+        // Filtr: tylko podprojekty z pluginem Jacoco i istniejącym plikiem .exec
+        def jacocoSubprojects = subprojects.findAll { it.plugins.hasPlugin('jacoco') }
+        def execFiles = jacocoSubprojects.collect {
+            def exec = file("${it.buildDir}/jacoco/test.exec")
+            exec.exists() ? exec : null
+        }.findAll { it != null }
 
-    sourceDirectories.setFrom files(subprojects.findAll { it.plugins.hasPlugin('java') }.collect { it.sourceSets.main.allSource.srcDirs })
-    classDirectories.setFrom files(subprojects.findAll { it.plugins.hasPlugin('java') }.collect { it.sourceSets.main.output })
+        if (execFiles.isEmpty()) {
+            throw new GradleException("Brak plików JaCoCo .exec w żadnym module — raport nie zostanie wygenerowany.")
+        }
+
+        // Ustal katalogi źródeł i klas łapiąc tylko podmoduły z Jacoco
+        def sourceDirs = jacocoSubprojects.collect { it.sourceSets.main.allSource.srcDirs }.flatten()
+        def classDirs = jacocoSubprojects.collect { it.sourceSets.main.output.classesDirs }.flatten()
+
+        executionData.setFrom(files(execFiles))
+        sourceDirectories.setFrom(files(sourceDirs))
+        classDirectories.setFrom(files(classDirs))
+    }
 
     reports {
         html.required = true
-        xml.required = false
-        csv.required = false
+        xml.required = true
     }
 }
 
