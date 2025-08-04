@@ -1,5 +1,3 @@
-package com.kodilla.basic_assertion;
-
 import com.kodilla.basic_assertion.homework.Calculator;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
