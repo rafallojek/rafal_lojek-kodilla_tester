@@ -43,4 +43,9 @@ public class ApplicationTest {
         String name = optionalTeacher.map(Teacher::getName).orElse("<undefined>");
         assertEquals("<undefined>", name);
     }
+
+    @Test
+    void testMain() {
+        Application.main(new String[]{});
+    }
 }
