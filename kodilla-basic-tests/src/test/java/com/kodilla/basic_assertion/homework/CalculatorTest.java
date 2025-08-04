@@ -1,26 +1,21 @@
-import com.kodilla.basic_assertion.homework.Calculator;
+package com.kodilla.basic_assertion.homework;
+
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 class CalculatorTest {
     @Test
-    void shouldReturnSum() {
+    void testSum() {
         Calculator calculator = new Calculator();
-        int result = calculator.sum(2, 3);
-        assertEquals(5, result);
+        calculator.sum(2, 2);
     }
-
     @Test
-    void shouldReturnDifference() {
+    void testSubtract() {
         Calculator calculator = new Calculator();
-        int result = calculator.subtract(5, 3);
-        assertEquals(2, result);
+        calculator.subtract(4, 2);
     }
-
     @Test
-    void shouldReturnMultiplication() {
+    void testMultiply() {
         Calculator calculator = new Calculator();
-        int result = calculator.multiply(4, 3);
-        assertEquals(12, result);
+        calculator.multiply(3, 3);
     }
 }

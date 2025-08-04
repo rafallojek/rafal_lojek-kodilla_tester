@@ -29,4 +29,11 @@ public class Car {
     public int getSeats() {
         return seats;
     }
+
+    public void turnOn() {
+    }
+
+    public void turnOff() {
+
+    }
 }

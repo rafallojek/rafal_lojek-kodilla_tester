@@ -6,4 +6,8 @@ public class ResultChecker {
     {
         return expected == actual;
     }
+
+    public void check(int i, int i1) {
+
+    }
 }

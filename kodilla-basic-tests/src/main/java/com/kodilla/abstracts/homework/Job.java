@@ -50,4 +50,7 @@ class Person {
     public void showResponsibilities() {
         System.out.println(firstName + "'s responsibilities: " + job.getResponsibilities());
     }
+
+    public void getJob() {
+    }
 }
