@@ -1,6 +1,7 @@
 package fizzbuzz;
 
 import com.kodilla.fizzbuzz.FizzBuzzGame;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -25,5 +26,11 @@ class FizzBuzzGameTest {
         String result = FizzBuzzGame.checkNumber(number);
         // Then
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testPlay() {
+        FizzBuzzGame game = new FizzBuzzGame();
+        game.play(1, 15);
     }
 }

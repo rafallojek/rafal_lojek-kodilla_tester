@@ -7,4 +7,8 @@ public class FizzBuzzGame {
         if (number % 5 == 0) return "Buzz";
         return "None";
     }
+
+    public void play(int i, int i1) {
+
+    }
 }
