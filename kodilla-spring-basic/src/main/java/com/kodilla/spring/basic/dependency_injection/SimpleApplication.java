@@ -8,6 +8,10 @@ public class SimpleApplication {
         this.messageService = messageService;
     }
 
+    public static void main(String[] strings) {
+
+    }
+
     public void processMessage(String message, String receiver) {
         if (checkReceiver(receiver)) {
             this.messageService.send(message, receiver);
