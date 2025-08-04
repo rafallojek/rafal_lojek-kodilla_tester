@@ -7,7 +7,7 @@ public class BookHacked {
     private String title;
     private int year;
 
-    public BookHacked(String author, String title, int year) {
+    public BookHacked(String author, String title) {
         this.author = author;
         this.title = title;
         this.year = year;

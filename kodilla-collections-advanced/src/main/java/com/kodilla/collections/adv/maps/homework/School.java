@@ -7,7 +7,7 @@ public class School {
     private List<Integer> studentsPerClass = new ArrayList<>();
     private String name;
 
-    public School(String name, int... students) {
+    public School(int... students) {
         this.name = name;
         for (int studentCount : students) {
             studentsPerClass.add(studentCount);
@@ -24,5 +24,9 @@ public class School {
 
     public String getName() {
         return name;
+    }
+
+    public int getSum() {
+        return 0;
     }
 }

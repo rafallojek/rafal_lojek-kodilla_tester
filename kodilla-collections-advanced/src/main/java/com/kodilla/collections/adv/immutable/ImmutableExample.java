@@ -11,6 +11,10 @@ public final class ImmutableExample {
         this.year = year;
     }
 
+    public static void main(String[] strings) {
+
+    }
+
     public String getAuthor() { return author; }
     public String getTitle() { return title; }
     public int getYear() { return year; }

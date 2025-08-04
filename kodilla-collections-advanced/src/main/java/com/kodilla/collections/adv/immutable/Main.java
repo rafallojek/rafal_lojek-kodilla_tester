@@ -4,10 +4,10 @@ import com.kodilla.records.BookRecord;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        BookRecord bookRecord = new BookRecord("test", "Test Position", 2022);
+        BookRecord bookRecord = new BookRecord("test", "Test Position");
 
-        Book book = new Book(bookRecord.author(), bookRecord.title(), bookRecord.year());
-        BookHacked hacked = new BookHacked(bookRecord.author(), bookRecord.title(), bookRecord.year());
+        Book book = new Book(bookRecord.author(), bookRecord.title());
+        BookHacked hacked = new BookHacked(bookRecord.author(), bookRecord.title());
         ImmutableExample example = new ImmutableExample(bookRecord.author(), bookRecord.title(), bookRecord.year());
 
         hacked.hackTitle("Title Change!");

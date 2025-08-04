@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Principal {
     private String name;
 
-    public Principal(String name) {
+    public Principal(String name, String math) {
         this.name = name;
     }
 

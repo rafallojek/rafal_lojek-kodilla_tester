@@ -7,9 +7,9 @@ public class SchoolDirectory {
     public static void main(String[] args) {
         Map<Principal, School> schoolMap = new HashMap<>();
 
-        schoolMap.put(new Principal("John Wayne"), new School("Western School", 20, 24, 26, 22));
-        schoolMap.put(new Principal("Zac Efron"), new School("High School Musical", 30, 29, 31));
-        schoolMap.put(new Principal("Maria Sklodowska-Curie"), new School("Sorbonne University", 21, 27, 16, 14, 216));
+        schoolMap.put(new Principal("John Wayne", "Math"), new School(20, 24, 26, 22));
+        schoolMap.put(new Principal("Zac Efron", "Math"), new School(30, 29, 31));
+        schoolMap.put(new Principal("Maria Sklodowska-Curie", "Math"), new School(21, 27, 16, 14, 216));
 
         for (Map.Entry<Principal, School> entry : schoolMap.entrySet()) {
             Principal principal = entry.getKey();

@@ -5,7 +5,7 @@ public final class Task {
     private final int duration;
     private final TaskPriority priority;
 
-    public Task(String title, int duration, TaskPriority priority) {
+    public Task(String title, int duration) {
         this.priority = priority;
         if (title == null || title.trim().isEmpty()) {
             throw new IllegalArgumentException("Title cannot be null or empty");
