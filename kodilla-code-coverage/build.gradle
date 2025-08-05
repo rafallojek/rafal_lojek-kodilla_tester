@@ -12,6 +12,7 @@ version = '1.0-SNAPSHOT'
 
 java {
     sourceCompatibility = '21'
+    targetCompatibility = '21'
 }
 
 repositories {
@@ -30,27 +31,25 @@ dependencies {
 }
 
 checkstyle {
-    toolVersion "8.30"
+    toolVersion = "8.30"
     configFile = file("checkstyle.xml")
 }
 
 spotbugs {
-    ignoreFailures = true
+    ignoreFailures = false  // Teraz build zakończy się błędem jeśli SpotBugs znajdzie problemy
 }
 
 spotbugsMain {
     reports {
-        html {
-            required = true
-        }
+        html.required = true
+        html.outputLocation = file("$buildDir/reports/spotbugs/main.html")
     }
 }
 
 spotbugsTest {
     reports {
-        html {
-            required = true
-        }
+        html.required = true
+        html.outputLocation = file("$buildDir/reports/spotbugs/test.html")
     }
 }
 

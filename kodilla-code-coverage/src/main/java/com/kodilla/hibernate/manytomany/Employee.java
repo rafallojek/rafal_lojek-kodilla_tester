@@ -2,6 +2,7 @@ package com.kodilla.hibernate.manytomany;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -44,7 +45,7 @@ public class Employee {
 
     @ManyToMany(mappedBy = "employees")
     public Set<Company> getCompanies() {
-        return companies;
+        return Collections.unmodifiableSet(companies);
     }
 
     private void setId(int id) {
@@ -60,6 +61,6 @@ public class Employee {
     }
 
     private void setCompanies(Set<Company> companies) {
-        this.companies = companies;
+        this.companies = new HashSet<>(companies);
     }
 }

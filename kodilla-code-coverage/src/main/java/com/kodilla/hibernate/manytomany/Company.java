@@ -2,6 +2,7 @@ package com.kodilla.hibernate.manytomany;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -41,7 +42,7 @@ public class Company {
             inverseJoinColumns = {@JoinColumn(name = "EMPLOYEE_ID")}
     )
     public Set<Employee> getEmployees() {
-        return employees;
+        return Collections.unmodifiableSet(employees);
     }
 
     private void setId(int id) {
@@ -53,6 +54,6 @@ public class Company {
     }
 
     private void setEmployees(Set<Employee> employees) {
-        this.employees = employees;
+        this.employees = new HashSet<>(employees);
     }
 }

@@ -7,21 +7,28 @@ import java.util.Properties;
 
 public class DbManager {
     private Connection conn;
-    private static DbManager dbManagerInstance;
+    private static volatile DbManager dbManagerInstance;
 
-    private DbManager() throws SQLException {
-        Properties connectionProps = new Properties();
-        connectionProps.put("user", "kodilla");
-        connectionProps.put("password", "kodilla");
-        conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/kodilla_tester?serverTimezone=Europe/Warsaw"
-                        + "&useSSL=False",
-                connectionProps);
+    private DbManager() {
+        try {
+            Properties connectionProps = new Properties();
+            connectionProps.put("user", "kodilla");
+            connectionProps.put("password", "kodilla");
+            conn = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/kodilla_tester?serverTimezone=Europe/Warsaw&useSSL=False",
+                    connectionProps);
+        } catch (SQLException e) {
+            throw new RuntimeException("Cannot connect to database", e);
+        }
     }
 
-    public static DbManager getInstance() throws SQLException {
+    public static DbManager getInstance() {
         if (dbManagerInstance == null) {
-            dbManagerInstance = new DbManager();
+            synchronized (DbManager.class) {
+                if (dbManagerInstance == null) {
+                    dbManagerInstance = new DbManager();
+                }
+            }
         }
         return dbManagerInstance;
     }

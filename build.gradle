@@ -13,11 +13,9 @@ subprojects {
 }
 
 task jacocoRootReport(type: JacocoReport) {
-    // Zależności tylko tam, gdzie istnieje task 'test'
-    dependsOn(subprojects.collect { it.tasks.findByName('test') }.findAll { it != null })
+    dependsOn subprojects*.test
 
     doFirst {
-        // Filtr: tylko podprojekty z pluginem Jacoco i istniejącym plikiem .exec
         def jacocoSubprojects = subprojects.findAll { it.plugins.hasPlugin('jacoco') }
         def execFiles = jacocoSubprojects.collect {
             def exec = file("${it.buildDir}/jacoco/test.exec")
@@ -25,10 +23,9 @@ task jacocoRootReport(type: JacocoReport) {
         }.findAll { it != null }
 
         if (execFiles.isEmpty()) {
-            throw new GradleException("Brak plików JaCoCo .exec w żadnym module — raport nie zostanie wygenerowany.")
+            throw new GradleException("No JaCoCo .exec files in any module - report will not be generated.")
         }
 
-        // Ustal katalogi źródeł i klas łapiąc tylko podmoduły z Jacoco
         def sourceDirs = jacocoSubprojects.collect { it.sourceSets.main.allSource.srcDirs }.flatten()
         def classDirs = jacocoSubprojects.collect { it.sourceSets.main.output.classesDirs }.flatten()
 
@@ -40,6 +37,7 @@ task jacocoRootReport(type: JacocoReport) {
     reports {
         html.required = true
         xml.required = true
+        csv.required = true
     }
 }
 
