@@ -21,27 +21,27 @@ class DbManagerTestSuite {
 
     @Test
     void testConnect() {
-        //Given
-        //When
-        //Then
+        // Given
+        // When
+        // Then
         Assertions.assertNotNull(dbManager.getConnection());
     }
 
     @Test
     void testSelectUsers() throws SQLException {
-        //Given
+        // Given
         String countQuery = "SELECT COUNT(*) FROM USERS";
         Statement statement = createStatement();
         ResultSet rs = statement.executeQuery(countQuery);
         int count = getRowsCount(rs);
         insertUsers(statement);
 
-        //When
+        // When
         String sqlQuery = "SELECT * FROM USERS";
         statement = createStatement();
         rs = statement.executeQuery(sqlQuery);
 
-        //Then
+        // Then
         int counter = getResultsCount(rs);
         int expected = count + 5;
         Assertions.assertEquals(expected, counter);
@@ -65,7 +65,8 @@ class DbManagerTestSuite {
     private void insertUsers(Statement statement) throws SQLException {
         for (AbstractMap.SimpleEntry<String, String> user : USERS) {
             statement.executeUpdate(
-                    String.format("INSERT INTO USERS(FIRSTNAME, LASTNAME) VALUES ('%s', '%s')",
+                    String.format(
+                            "INSERT INTO USERS(FIRSTNAME, LASTNAME) VALUES ('%s', '%s')",
                             user.getKey(),
                             user.getValue()
                     )
@@ -76,10 +77,12 @@ class DbManagerTestSuite {
     private static int getResultsCount(ResultSet rs) throws SQLException {
         int counter = 0;
         while (rs.next()) {
-            System.out.printf("%d, %s, %s%n",
+            System.out.printf(
+                    "%d, %s, %s%n",
                     rs.getInt("ID"),
                     rs.getString("FIRSTNAME"),
-                    rs.getString("LASTNAME"));
+                    rs.getString("LASTNAME")
+            );
             counter++;
         }
         return counter;
@@ -98,40 +101,49 @@ class DbManagerTestSuite {
         // Given
         Statement statement = dbManager.getConnection().createStatement();
         statement.executeUpdate(
-                "INSERT INTO USERS(FIRSTNAME, LASTNAME) VALUES ('TestFirst', 'TestLast')");
-        ResultSet rs = statement.executeQuery(
-                "SELECT ID FROM USERS WHERE FIRSTNAME = 'TestFirst' AND LASTNAME = 'TestLast' ORDER BY ID DESC LIMIT 1");
+                "INSERT INTO USERS(FIRSTNAME, LASTNAME) VALUES ('TestFirst', 'TestLast')"
+        );
+
+        String getUserIdSql =
+                "SELECT ID FROM USERS WHERE FIRSTNAME = 'TestFirst' AND LASTNAME = 'TestLast' " +
+                        "ORDER BY ID DESC LIMIT 1";
+        ResultSet rs = statement.executeQuery(getUserIdSql);
+
         int testUserId = -1;
-        if(rs.next()) {
+        if (rs.next()) {
             testUserId = rs.getInt("ID");
         }
 
         statement.executeUpdate(
-                "INSERT INTO POSTS(USER_ID, BODY) VALUES ("+testUserId+", 'Test Post 1')");
+                "INSERT INTO POSTS(USER_ID, BODY) VALUES (" + testUserId + ", 'Test Post 1')"
+        );
         statement.executeUpdate(
-                "INSERT INTO POSTS(USER_ID, BODY) VALUES ("+testUserId+", 'Test Post 2')");
+                "INSERT INTO POSTS(USER_ID, BODY) VALUES (" + testUserId + ", 'Test Post 2')"
+        );
 
         // When
-        String sql = "SELECT USERS.FIRSTNAME, USERS.LASTNAME " +
-                "FROM USERS JOIN POSTS ON USERS.ID = POSTS.USER_ID " +
-                "GROUP BY USERS.ID " +
-                "HAVING COUNT(POSTS.ID) >= 2";
+        String sql =
+                "SELECT USERS.FIRSTNAME, USERS.LASTNAME " +
+                        "FROM USERS JOIN POSTS ON USERS.ID = POSTS.USER_ID " +
+                        "GROUP BY USERS.ID " +
+                        "HAVING COUNT(POSTS.ID) >= 2";
         rs = statement.executeQuery(sql);
 
         // Then
         int counter = 0;
         boolean testUserFound = false;
-        while(rs.next()) {
+        while (rs.next()) {
             String firstname = rs.getString("FIRSTNAME");
             String lastname = rs.getString("LASTNAME");
             System.out.println(firstname + " " + lastname);
-            if(firstname.equals("TestFirst") && lastname.equals("TestLast")) {
+            if (firstname.equals("TestFirst") && lastname.equals("TestLast")) {
                 testUserFound = true;
             }
             counter++;
         }
 
         Assertions.assertTrue(testUserFound, "The test user should be on the this list");
+
         statement.executeUpdate("DELETE FROM POSTS WHERE USER_ID = " + testUserId);
         statement.executeUpdate("DELETE FROM USERS WHERE ID = " + testUserId);
         rs.close();
