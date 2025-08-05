@@ -14,7 +14,7 @@ public class StorePage {
     private final By searchInput = By.id("searchField");  // poprawione id na "searchField"
     private final By results = By.cssSelector(".element");
 
-    public StorePage() {
+    public StorePage(WebDriver driver) {
         this.driver = driver;
     }
 

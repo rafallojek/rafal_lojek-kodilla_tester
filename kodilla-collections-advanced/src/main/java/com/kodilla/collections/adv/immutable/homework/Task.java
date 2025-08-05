@@ -5,16 +5,20 @@ public final class Task {
     private final int duration;
     private final TaskPriority priority;
 
-    public Task(String title, int duration) {
-        this.priority = priority;
+    public Task(String title, int duration, TaskPriority priorityParam) {
         if (title == null || title.trim().isEmpty()) {
             throw new IllegalArgumentException("Title cannot be null or empty");
         }
         if (duration <= 0 || duration > 10) {
             throw new IllegalArgumentException("Duration must be between 1 and 10 hours");
         }
+        if (priorityParam == null) {
+            throw new IllegalArgumentException("Priority cannot be null");
+        }
+
         this.title = title.trim();
         this.duration = duration;
+        this.priority = priorityParam;
     }
 
     public String getTitle() {
@@ -34,7 +38,7 @@ public final class Task {
         return "Task{" +
                 "title='" + title + '\'' +
                 ", duration=" + duration +
-                ", priority='" + priority + '\'' +
+                ", priority=" + priority +
                 '}';
     }
 }

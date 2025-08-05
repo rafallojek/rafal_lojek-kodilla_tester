@@ -8,7 +8,6 @@ public class School {
     private String name;
 
     public School(int... students) {
-        this.name = name;
         for (int studentCount : students) {
             studentsPerClass.add(studentCount);
         }
@@ -27,6 +26,6 @@ public class School {
     }
 
     public int getSum() {
-        return 0;
+        return getTotalStudents();
     }
 }

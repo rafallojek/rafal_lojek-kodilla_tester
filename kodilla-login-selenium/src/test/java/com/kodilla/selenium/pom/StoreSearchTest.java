@@ -55,7 +55,7 @@ public class StoreSearchTest {
 
         List<WebElement> results = driver.findElements(By.cssSelector(".element"));
 
-        System.out.println("Wyniki dla frazy: \"" + phrase + "\" (liczba elementów: " + results.size() + "):");
+        System.out.println("Wyniki dla frazy: \"" + phrase + "\" (liczba elementow: " + results.size() + "):");
         for (WebElement result : results) {
             System.out.println(" - " + result.getText());
         }

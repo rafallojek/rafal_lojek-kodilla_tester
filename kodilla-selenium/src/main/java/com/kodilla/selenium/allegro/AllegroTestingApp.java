@@ -13,42 +13,65 @@ public class AllegroTestingApp {
         System.setProperty("webdriver.chrome.driver", "c:\\selenium\\chromedriver.exe");
 
         WebDriver driver = new ChromeDriver();
-        driver.get("https://allegro.pl");
-        driver.manage().window().maximize();
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20)); // wydłużony timeout
 
         try {
-            WebElement acceptCookies = driver.findElement(By.cssSelector("button[data-role='accept-consent']"));
-            acceptCookies.click();
-        } catch (Exception ignored) {}
+            driver.get("https://allegro.pl");
+            driver.manage().window().maximize();
 
-        try {
-            Alert alert = driver.switchTo().alert();
-            alert.accept();
-        } catch (NoAlertPresentException ignored) {}
+            try {
+                WebElement acceptCookies = wait.until(
+                        ExpectedConditions.elementToBeClickable(By.cssSelector("button[data-role='accept-consent']"))
+                );
+                acceptCookies.click();
+                System.out.println("Zaakceptowano cookies.");
+            } catch (TimeoutException e) {
+                System.out.println("Brak przycisku akceptacji cookies lub za długo się ładował.");
+            }
 
-        WebElement categoryDropdown = driver.findElement(By.cssSelector("select[data-role='filters-dropdown']"));
-        categoryDropdown.click();
+            try {
+                Alert alert = driver.switchTo().alert();
+                alert.accept();
+                System.out.println("Alert zaakceptowany.");
+            } catch (NoAlertPresentException ignored) {
+                System.out.println("Brak alertu na stronie.");
+            }
 
-        WebElement electronicsOption = driver.findElement(By.cssSelector("option[value='/kategoria/elektronika']"));
-        electronicsOption.click();
+            WebElement categoryDropdown = wait.until(
+                    ExpectedConditions.elementToBeClickable(By.cssSelector("select[data-role='filters-dropdown']"))
+            );
+            categoryDropdown.click();
 
-        WebElement searchInput = driver.findElement(By.cssSelector("input[data-role='search-input']"));
-        searchInput.sendKeys("Mavic mini");
+            WebElement electronicsOption = wait.until(
+                    ExpectedConditions.elementToBeClickable(By.cssSelector("option[value='/kategoria/elektronika']"))
+            );
+            electronicsOption.click();
 
-        WebElement searchButton = driver.findElement(By.cssSelector("button[data-role='search-button']"));
-        searchButton.click();
+            WebElement searchInput = wait.until(
+                    ExpectedConditions.elementToBeClickable(By.cssSelector("input[data-role='search-input']"))
+            );
+            searchInput.sendKeys("Mavic mini");
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("section>article")));
+            WebElement searchButton = wait.until(
+                    ExpectedConditions.elementToBeClickable(By.cssSelector("button[data-role='search-button']"))
+            );
+            searchButton.click();
 
-        List<WebElement> productCards = driver.findElements(By.cssSelector("section > article"));
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("section>article")));
 
-        for (WebElement product : productCards) {
-            System.out.println("Produkt:\n" + product.getText());
-            System.out.println("---------------");
+            List<WebElement> productCards = driver.findElements(By.cssSelector("section > article"));
+
+            for (WebElement product : productCards) {
+                System.out.println("Produkt:\n" + product.getText());
+                System.out.println("---------------");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Wystąpił błąd podczas testu: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            driver.quit();
+            System.out.println("Przeglądarka zamknięta.");
         }
-
-        driver.quit();
     }
 }
