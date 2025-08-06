@@ -43,7 +43,7 @@ public class ApplicationTest {
     private final BrowserWebDriverContainer<?> chrome =
             new BrowserWebDriverContainer<>()
                     .withNetwork(network)
-                    .withRecordingMode(RECORD_ALL, new File("./build/")) // Nagrywa wszystko w katalogu build/
+                    .withRecordingMode(RECORD_ALL, new File("./build/"))
                     .withCapabilities(new ChromeOptions());
 
     @BeforeAll
@@ -68,16 +68,13 @@ public class ApplicationTest {
     }
 
     @Test
-    void nagrajWizytowkeTest() throws IOException {
-        // Given
+    void recordBusinessCardTest() throws IOException {
         RemoteWebDriver driver = chrome.getWebDriver();
-
-        // When
         driver.get("http://my-server/");
+
         File screenshot = driver.getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(screenshot, new File("./build/screenshots/" + screenshot.getName()));
 
-        // Then
         String title = driver.findElement(By.tagName("h1")).getText();
         assertEquals("Hello! Tutaj Rafal, przyszly Tester Automatyzujacy", title);
     }
