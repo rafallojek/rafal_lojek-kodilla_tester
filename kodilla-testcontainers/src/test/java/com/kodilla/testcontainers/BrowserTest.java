@@ -13,12 +13,15 @@ import org.testcontainers.shaded.org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 
+import static org.testcontainers.containers.BrowserWebDriverContainer.VncRecordingMode.RECORD_ALL;
+
 @Testcontainers
 class BrowserTest {
 
     @Container
     private final BrowserWebDriverContainer<?> chromeContainer =
             new BrowserWebDriverContainer<>()
+                    .withRecordingMode(RECORD_ALL, new File("./build/"))
                     .withCapabilities(new ChromeOptions());
 
     @BeforeAll
